@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#080a12">
+<title>ایلیاد و ادیسه | دانشنامه تعاملی شخصیت‌ها و خط داستان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Cinzel:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c-god:#d9b25c; --c-god-dim:#8a7433;
+    --c-trojan:#c0553a; --c-trojan-dim:#6e3225;
+    --c-greek:#3f95a8; --c-greek-dim:#215663;
+    --c-odyssey:#8b6fc9; --c-odyssey-dim:#4e3d78;
+    --bg-deep:#080a12; --bg-panel:#11121c; --bg-panel-2:#171a29;
+    --ink:#ece3d0; --ink-dim:#9b96b8; --ink-faint:#645f80;
+    --gold-line: rgba(217,178,92,0.35);
+    --shadow-deep: 0 20px 60px -20px rgba(0,0,0,0.7);
+    --bg-glow:#1a1f33;
+    --title-g1:#fbeecb; --title-g2:#d9b25c; --title-g3:#7a611f;
+    --font-scale:1;
+  }
+  /* ===== THEMES (visual skins only — faction colors & all text content stay untouched) ===== */
+  body[data-theme="fire"]{
+    --bg-deep:#150a08; --bg-panel:#1f1210; --bg-panel-2:#2a1714;
+    --ink:#f3e4d8; --ink-dim:#c9a89a; --ink-faint:#8a6355;
+    --gold-line: rgba(224,122,58,0.4); --bg-glow:#3a1a10;
+    --c-god:#e07a3a; --c-god-dim:#8a4a22;
+    --title-g1:#ffdcb0; --title-g2:#e07a3a; --title-g3:#5a2a10;
+  }
+  body[data-theme="sea"]{
+    --bg-deep:#050f16; --bg-panel:#0c1f2b; --bg-panel-2:#122a3a;
+    --ink:#dff2f5; --ink-dim:#8fb9c4; --ink-faint:#4f7a86;
+    --gold-line: rgba(63,149,168,0.4); --bg-glow:#0c2733;
+    --c-god:#4fb8cc; --c-god-dim:#215663;
+    --title-g1:#dff7fb; --title-g2:#4fb8cc; --title-g3:#123240;
+  }
+  body[data-theme="papyrus"]{
+    --bg-deep:#eee2c6; --bg-panel:#f4ecd4; --bg-panel-2:#e9dcb6;
+    --ink:#3a2f1d; --ink-dim:#6b5a3a; --ink-faint:#9c8a5f;
+    --gold-line: rgba(139,105,20,0.45); --bg-glow:#e2d3a8;
+    --c-god:#8a5a1e; --c-god-dim:#c9a35a;
+    --title-g1:#5a3a12; --title-g2:#8a5a1e; --title-g3:#c9a35a;
+  }
+  body[data-theme="purple"]{
+    --bg-deep:#0e0916; --bg-panel:#191228; --bg-panel-2:#221a36;
+    --ink:#ece3f7; --ink-dim:#b0a0cf; --ink-faint:#6c5c8a;
+    --gold-line: rgba(139,111,201,0.4); --bg-glow:#241a3d;
+    --c-god:#a98ce0; --c-god-dim:#5b4b8a;
+    --title-g1:#ecdcff; --title-g2:#a98ce0; --title-g3:#2a1a4a;
+  }
+  body[data-theme="bronze"]{
+    --bg-deep:#100d0a; --bg-panel:#1c1712; --bg-panel-2:#261f17;
+    --ink:#f0e4d0; --ink-dim:#c2ab86; --ink-faint:#7d6a4c;
+    --gold-line: rgba(184,134,58,0.4); --bg-glow:#2c2013;
+    --c-god:#b8863a; --c-god-dim:#6e4f22;
+    --title-g1:#f5e3c0; --title-g2:#b8863a; --title-g3:#4a2f10;
+  }
+  body{font-size:calc(16px * var(--font-scale));}
+  body.reduced-motion .star, body.reduced-motion .ember{animation:none !important; display:none;}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:radial-gradient(ellipse 120% 80% at 50% -10%, var(--bg-glow) 0%, var(--bg-deep) 55%), var(--bg-deep);
+    transition:background .4s;
+    color:var(--ink); font-family:'Vazirmatn', sans-serif; min-height:100vh; overflow-x:hidden; position:relative;
+  }
+  .eng{font-family:'Cinzel', serif; letter-spacing:0.06em;}
+  a{color:inherit;}
+
+  #stars{position:fixed; inset:0; z-index:0; pointer-events:none;}
+  .star{position:absolute; background:#fff; border-radius:50%; opacity:0.5; animation:twinkle 4s ease-in-out infinite;}
+  @keyframes twinkle{0%,100%{opacity:.15;} 50%{opacity:.85;}}
+  .ember{position:absolute; bottom:-10px; border-radius:50%; background:radial-gradient(circle, #d9b25c 0%, rgba(217,178,92,0) 70%); opacity:0; animation:rise linear infinite;}
+  @keyframes rise{0%{transform:translateY(0) translateX(0); opacity:0;} 10%{opacity:.55;} 100%{transform:translateY(-110vh) translateX(var(--drift,20px)); opacity:0;}}
+
+  .wrap{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 24px 90px;}
+
+  header.hero{padding:70px 10px 34px; text-align:center; position:relative;}
+  .kicker{display:inline-flex; align-items:center; gap:10px; font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.35em; color:var(--c-god); text-transform:uppercase; margin-bottom:22px; border:1px solid var(--gold-line); padding:8px 20px; border-radius:40px; background:rgba(217,178,92,0.06);}
+  .kicker::before,.kicker::after{content:"◆"; font-size:8px; color:var(--c-god);}
+  h1.title{font-size:clamp(38px,7vw,74px); margin:0 0 18px; font-weight:900; background:linear-gradient(180deg,var(--title-g1) 0%, var(--title-g2) 55%, var(--title-g3) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; line-height:1.15; filter:drop-shadow(0 6px 24px rgba(217,178,92,0.18)); transition:transform .1s ease-out; will-change:transform;}
+  p.subtitle{max-width:720px; margin:0 auto 10px; color:var(--ink-dim); font-size:17px; line-height:2;}
+  p.movie-note{max-width:720px; margin:18px auto 0; font-size:13.5px; color:var(--ink-faint); border-top:1px dashed var(--gold-line); padding-top:16px;}
+
+  /* stats bar */
+  .stats{display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin:8px 0 44px;}
+  .stat{background:var(--bg-panel); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:14px 22px; text-align:center; min-width:120px;}
+  .stat b{display:block; font-size:26px; font-weight:900; margin-bottom:2px;}
+  .stat span{font-size:11.5px; color:var(--ink-faint);}
+
+  .view-toggle{display:flex; justify-content:center; gap:10px; margin-bottom:16px;}
+  .vt-btn{cursor:pointer; user-select:none; padding:11px 26px; border-radius:30px; font-size:14px; font-weight:700; border:1px solid rgba(255,255,255,0.12); background:var(--bg-panel); color:var(--ink-dim); transition:.25s; display:flex; align-items:center; gap:8px;}
+  .vt-btn.active{background:linear-gradient(135deg,var(--c-god),#a9863a); color:#161101; border-color:var(--c-god);}
+
+  .controls{position:sticky; top:0; z-index:20; background:linear-gradient(180deg, var(--bg-deep) 60%, rgba(8,10,18,0.85) 100%); backdrop-filter:blur(10px); padding:16px 0 18px; margin-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.06);}
+  .search-row{display:flex; flex-wrap:wrap; gap:10px; max-width:640px; margin:0 auto 16px; align-items:center; justify-content:center;}
+  .search-box{display:flex; align-items:center; gap:10px; flex:1; min-width:220px; background:var(--bg-panel); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:10px 16px;}
+  .search-box input{flex:1; background:none; border:none; outline:none; color:var(--ink); font-family:'Vazirmatn'; font-size:14.5px;}
+  .search-box input::placeholder{color:var(--ink-faint);}
+  .dice-btn{cursor:pointer; background:linear-gradient(135deg,var(--c-odyssey),var(--c-odyssey-dim)); border:none; color:#fff; font-size:13.5px; font-weight:700; padding:12px 18px; border-radius:14px; display:flex; align-items:center; gap:8px; transition:.2s; white-space:nowrap;}
+  .dice-btn:hover{transform:translateY(-2px); box-shadow:0 8px 20px -6px rgba(139,111,201,0.5);}
+  .tabs{display:flex; flex-wrap:wrap; justify-content:center; gap:10px;}
+  .tab{cursor:pointer; user-select:none; border:1px solid rgba(255,255,255,0.1); background:var(--bg-panel); color:var(--ink-dim); padding:9px 20px; border-radius:30px; font-size:13.5px; font-weight:600; transition:.25s; display:flex; align-items:center; gap:8px;}
+  .tab .dot{width:8px; height:8px; border-radius:50%; display:inline-block;}
+  .tab:hover{border-color:rgba(255,255,255,0.25); color:var(--ink);}
+  .tab.active{color:#12121a; font-weight:700;}
+  .tab.active[data-f="all"]{background:var(--ink); border-color:var(--ink);}
+  .tab.active[data-f="god"]{background:var(--c-god); border-color:var(--c-god);}
+  .tab.active[data-f="trojan"]{background:var(--c-trojan); border-color:var(--c-trojan); color:#fff;}
+  .tab.active[data-f="greek"]{background:var(--c-greek); border-color:var(--c-greek); color:#fff;}
+  .tab.active[data-f="odyssey"]{background:var(--c-odyssey); border-color:var(--c-odyssey); color:#fff;}
+
+  .section-label{display:flex; align-items:center; gap:14px; margin:46px 0 20px; color:var(--ink-faint); font-size:13px;}
+  .section-label .line{flex:1; height:1px; background:linear-gradient(90deg, currentColor, transparent);}
+  .section-label b{color:var(--ink); font-size:16px; font-weight:800;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:16px;}
+  .card{position:relative; background:linear-gradient(160deg, var(--bg-panel-2), var(--bg-panel)); border:1px solid rgba(255,255,255,0.07); border-radius:18px; padding:20px 14px 16px; text-align:center; cursor:pointer; transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s; overflow:hidden;}
+  .card::before{content:""; position:absolute; inset:0; opacity:0; transition:opacity .35s; background:radial-gradient(circle at 50% 0%, var(--glow,rgba(217,178,92,.25)), transparent 65%);}
+  .card:hover{transform:translateY(-6px) scale(1.02); box-shadow:var(--shadow-deep); border-color:var(--edge,var(--gold-line));}
+  .card:hover::before{opacity:1;}
+  .medal{width:64px; height:64px; margin:0 auto 12px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:28px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.18), transparent 60%), var(--medalbg,#333); border:2px solid var(--edge,var(--c-god)); box-shadow:0 0 0 4px rgba(255,255,255,0.03), 0 8px 20px -6px rgba(0,0,0,0.6); position:relative; z-index:1;}
+  .card h3{margin:0 0 4px; font-size:15.5px; font-weight:800; position:relative; z-index:1;}
+  .card .epithet{font-size:11.5px; color:var(--ink-faint); position:relative; z-index:1; min-height:15px;}
+  .badge{position:absolute; top:10px; left:10px; font-size:9.5px; padding:3px 8px; border-radius:20px; font-family:'Cinzel'; letter-spacing:.06em; z-index:1; font-weight:700;}
+  .fatebadge{position:absolute; top:10px; right:10px; font-size:14px; z-index:1;}
+  .wikilink{position:absolute; bottom:10px; right:10px; font-size:10.5px; opacity:0; transition:.25s; z-index:2; color:var(--ink-faint); text-decoration:none; background:rgba(255,255,255,0.07); padding:4px 9px; border-radius:10px; display:flex; align-items:center; gap:4px;}
+  .card:hover .wikilink{opacity:1;}
+  .wikilink:hover{background:rgba(255,255,255,0.16); color:var(--ink);}
+
+  #tooltip{position:fixed; z-index:200; pointer-events:none; max-width:260px; background:#05060b; border:1px solid var(--gold-line); padding:12px 14px; border-radius:12px; font-size:12.5px; line-height:1.9; color:var(--ink); box-shadow:0 10px 30px rgba(0,0,0,0.6); opacity:0; transform:translateY(6px); transition:opacity .15s, transform .15s;}
+  #tooltip.show{opacity:1; transform:translateY(0);}
+  #tooltip b{color:var(--c-god);}
+
+  .modal-bg{position:fixed; inset:0; background:rgba(4,5,10,0.78); backdrop-filter:blur(6px); z-index:100; display:none; align-items:flex-start; justify-content:center; padding:40px 16px; overflow-y:auto;}
+  .modal-bg.open{display:flex; animation:fadeIn .25s ease;}
+  @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+  .modal{background:linear-gradient(170deg, #161829, #0d0e18); border:1px solid var(--gold-line); border-radius:24px; max-width:660px; width:100%; padding:36px 32px 30px; position:relative; box-shadow:0 40px 100px -20px rgba(0,0,0,0.85); animation:pop .3s cubic-bezier(.2,.9,.25,1);}
+  @keyframes pop{from{transform:scale(.92) translateY(10px); opacity:0;} to{transform:scale(1) translateY(0); opacity:1;}}
+  .modal .close{position:absolute; top:18px; left:18px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:var(--ink); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; z-index:5;}
+  .modal .close:hover{background:rgba(255,255,255,0.15);}
+  .modal-nav{position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:var(--ink); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; z-index:5;}
+  .modal-nav:hover{background:var(--c-god); color:#161101;}
+  .modal-nav.prev{right:-56px;} .modal-nav.next{left:-56px;}
+  @media(max-width:760px){
+    .modal-nav{width:38px; height:38px; font-size:15px; top:16px; transform:none;}
+    .modal-nav.prev{right:60px; left:auto;}
+    .modal-nav.next{right:104px; left:auto;}
+    .modal .close{top:16px; left:16px;}
+  }
+  .modal-head{display:flex; align-items:center; gap:18px; margin-bottom:6px;}
+  .modal-medal{width:78px; height:78px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; font-size:34px; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.2), transparent 60%), var(--medalbg,#333); border:2px solid var(--edge,var(--c-god));}
+  .modal h2{margin:0 0 4px; font-size:24px; font-weight:900;}
+  .modal .epithet-lg{color:var(--ink-faint); font-size:13.5px;}
+  .badge-row{display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; align-items:center;}
+  .fac-badge{display:inline-block; font-size:10.5px; font-family:'Cinzel'; letter-spacing:.08em; padding:4px 10px; border-radius:20px; font-weight:700;}
+  .fate-badge-lg{font-size:11px; padding:4px 10px; border-radius:20px; background:rgba(255,255,255,0.06); color:var(--ink-dim); border:1px solid rgba(255,255,255,0.1);}
+  .wiki-btn{font-size:11px; padding:4px 12px; border-radius:20px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:var(--ink-dim); text-decoration:none; transition:.2s;}
+  .wiki-btn:hover{background:#fff; color:#111;}
+  .modal-body{margin-top:22px; font-size:14.5px; line-height:2.05; color:#d9d2ea;}
+  .kv-row{display:flex; gap:8px; margin:14px 0; font-size:13.5px; flex-wrap:wrap;}
+  .kv-row .k{color:var(--c-god); font-weight:700; white-space:nowrap;}
+  .rel-title{margin:24px 0 10px; font-size:13px; color:var(--ink-faint); display:flex; align-items:center; gap:8px;}
+  .rel-title .line{flex:1; height:1px; background:rgba(255,255,255,0.08);}
+  .rel-list{display:flex; flex-wrap:wrap; gap:8px;}
+  .rel-chip{cursor:pointer; font-size:12.5px; padding:7px 13px; border-radius:20px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; gap:7px; transition:.2s;}
+  .rel-chip:hover{background:rgba(255,255,255,0.12); transform:translateY(-2px);}
+  .rel-chip .rlabel{color:var(--ink-faint); font-size:11px;}
+  .rel-chip .rname{font-weight:700;}
+  .rel-node text{pointer-events:none;}
+  .rel-node circle{transition:.2s;}
+  .rel-node:hover circle{filter:brightness(1.4);}
+
+  /* ---------- timeline ---------- */
+  #timelineView{display:none;}
+  .story-phase{margin-bottom:60px;}
+  .phase-head{text-align:center; margin-bottom:8px;}
+  .phase-head .num{font-family:'Cinzel'; font-size:12px; letter-spacing:.3em; color:var(--phase-color); text-transform:uppercase;}
+  .phase-head h2{margin:6px 0 8px; font-size:clamp(24px,4vw,34px); font-weight:900;}
+  .phase-head p{max-width:640px; margin:0 auto; color:var(--ink-faint); font-size:13.5px; line-height:1.9;}
+  .timeline{position:relative; margin:36px auto 0; max-width:820px; padding-inline-start:0;}
+  .timeline::before{content:""; position:absolute; top:0; bottom:0; right:29px; width:2px; background:linear-gradient(180deg, var(--phase-color), transparent 96%); opacity:.5;}
+  .chap{position:relative; padding-right:70px; margin-bottom:14px;}
+  .chap-num{position:absolute; right:0; top:0; width:60px; height:60px; border-radius:50%; background:var(--bg-panel); border:2px solid var(--phase-color); display:flex; align-items:center; justify-content:center; font-family:'Cinzel'; font-weight:700; font-size:17px; color:var(--phase-color); z-index:1;}
+  .chap-card{background:linear-gradient(160deg, var(--bg-panel-2), var(--bg-panel)); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:18px 20px; cursor:pointer; transition:.25s;}
+  .chap-card:hover{border-color:var(--phase-color);}
+  .chap-head{display:flex; justify-content:space-between; align-items:center; gap:10px;}
+  .chap-head h3{margin:0; font-size:15.5px; font-weight:800;}
+  .chevron{color:var(--ink-faint); transition:.3s; font-size:13px;}
+  .chap.open .chevron{transform:rotate(180deg); color:var(--phase-color);}
+  .chap-detail{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .chap.open .chap-detail{max-height:600px;}
+  .chap-detail-in{padding-top:12px; font-size:13.5px; line-height:2; color:var(--ink-dim);}
+  .chap-chars{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px;}
+
+  footer{text-align:center; color:var(--ink-faint); font-size:12px; margin-top:70px; padding-top:26px; border-top:1px solid rgba(255,255,255,0.06); line-height:2;}
+  footer a{color:var(--c-god); text-decoration:none;}
+
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--bg-deep);}
+  ::-webkit-scrollbar-thumb{background:#2a2d40; border-radius:10px;}
+
+  @media (max-width:520px){
+    .modal{padding:26px 18px 22px;}
+    .modal-head{flex-direction:column; text-align:center;}
+    .chap{padding-right:56px;}
+    .chap-num{width:46px; height:46px; font-size:14px;}
+    .timeline::before{right:22px;}
+  }
+
+  /* ================= EXTRA FEATURES ================= */
+
+  /* credit line */
+  .credit-line{margin-top:14px; font-size:12.5px; color:var(--ink-faint);}
+  .credit-line a{color:var(--c-god); text-decoration:none; font-weight:700;}
+  .credit-line a:hover{text-decoration:underline;}
+
+  /* theme picker */
+  #themePicker{position:fixed; top:18px; left:18px; z-index:50; display:flex; flex-direction:column; gap:8px; background:rgba(10,11,18,0.55); backdrop-filter:blur(8px); padding:10px; border-radius:16px; border:1px solid rgba(255,255,255,0.1);}
+  .theme-swatch{width:26px; height:26px; border-radius:50%; cursor:pointer; border:2px solid rgba(255,255,255,0.25); transition:.2s; position:relative;}
+  .theme-swatch:hover{transform:scale(1.15);}
+  .theme-swatch.active{border-color:#fff; box-shadow:0 0 0 3px rgba(255,255,255,0.15);}
+
+  /* toolbar row */
+  .toolbar{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:18px;}
+  .tb-btn{cursor:pointer; user-select:none; background:var(--bg-panel); border:1px solid rgba(255,255,255,0.1); color:var(--ink-dim); font-size:12.5px; padding:8px 14px; border-radius:20px; transition:.2s; display:flex; align-items:center; gap:6px;}
+  .tb-btn:hover{color:var(--ink); border-color:rgba(255,255,255,0.25);}
+  .tb-btn.active{background:var(--c-god); color:#161101; border-color:var(--c-god);}
+
+  /* fate quick filters */
+  .fate-tabs{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:10px;}
+  .fate-chip{cursor:pointer; font-size:12px; padding:6px 14px; border-radius:20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:var(--ink-faint); transition:.2s;}
+  .fate-chip.active{background:rgba(255,255,255,0.12); color:var(--ink); border-color:var(--gold-line);}
+
+  /* favorite star on card */
+  .fav-star{position:absolute; top:38px; right:10px; font-size:15px; z-index:2; cursor:pointer; opacity:.55; transition:.2s;}
+  .fav-star:hover{opacity:1; transform:scale(1.2);}
+  .fav-star.faved{opacity:1; filter:drop-shadow(0 0 4px gold);}
+  .rel-count{position:absolute; bottom:10px; left:10px; font-size:10px; color:var(--ink-faint); background:rgba(255,255,255,0.05); padding:3px 8px; border-radius:10px; z-index:1;}
+
+  /* recently viewed */
+  #recentBar{max-width:640px; margin:0 auto 14px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center;}
+  #recentBar:empty{display:none;}
+  .recent-chip{cursor:pointer; font-size:11.5px; padding:6px 12px; border-radius:16px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:var(--ink-dim); display:flex; align-items:center; gap:6px; transition:.2s;}
+  .recent-chip:hover{background:rgba(255,255,255,0.12);}
+
+  mark{background:var(--c-god); color:#161101; padding:0 2px; border-radius:3px;}
+
+  /* scroll to top */
+  #scrollTop{position:fixed; bottom:24px; left:24px; width:46px; height:46px; border-radius:50%; background:var(--c-god); color:#161101; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer; z-index:60; box-shadow:0 10px 26px -8px rgba(0,0,0,0.6); opacity:0; pointer-events:none; transition:.3s;}
+  #scrollTop.show{opacity:1; pointer-events:auto;}
+
+  /* compare tray */
+  #compareTray{position:fixed; bottom:0; right:0; left:0; z-index:70; background:var(--bg-panel-2); border-top:1px solid var(--gold-line); padding:14px 20px; display:none; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; box-shadow:0 -10px 30px rgba(0,0,0,0.4);}
+  #compareTray.show{display:flex;}
+  .cmp-slot{display:flex; align-items:center; gap:8px; background:var(--bg-panel); padding:8px 14px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); font-size:13px;}
+  .cmp-slot .x{cursor:pointer; color:var(--ink-faint);}
+  .cmp-go{background:var(--c-god); color:#161101; border:none; padding:10px 22px; border-radius:14px; font-weight:800; cursor:pointer; font-size:13.5px;}
+  .cmp-col{flex:1; min-width:220px;}
+  .cmp-wrap{display:flex; gap:18px; flex-wrap:wrap;}
+  .cmp-box{flex:1; min-width:240px; background:var(--bg-panel); border-radius:16px; padding:18px; border:1px solid rgba(255,255,255,0.08);}
+  .cmp-box h4{margin:8px 0 4px;}
+
+  /* network graph view */
+  #graphView{display:none;}
+  #graphView svg{width:100%; height:auto; display:block;}
+  .graph-node circle{cursor:pointer; transition:.2s;}
+  .graph-node:hover circle{filter:brightness(1.5);}
+  .graph-legend{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin:14px 0 6px; font-size:12px; color:var(--ink-faint);}
+  .graph-legend span{display:inline-flex; align-items:center; gap:6px;}
+  .graph-legend i{width:10px; height:10px; border-radius:50%; display:inline-block;}
+
+  /* onboarding banner */
+  #onboardBanner{max-width:820px; margin:0 auto 30px; background:linear-gradient(120deg, var(--bg-panel), var(--bg-panel-2)); border:1px solid var(--gold-line); border-radius:16px; padding:16px 20px; font-size:13px; color:var(--ink-dim); display:flex; align-items:center; gap:14px; justify-content:space-between;}
+  #onboardBanner .x{cursor:pointer; color:var(--ink-faint); font-size:18px; flex:none;}
+
+  /* toast */
+  #toast{position:fixed; bottom:90px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--bg-panel-2); border:1px solid var(--gold-line); padding:14px 26px; border-radius:16px; z-index:90; opacity:0; pointer-events:none; transition:.4s; font-size:13.5px; box-shadow:var(--shadow-deep);}
+  #toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  /* shortcuts modal reuses .modal-bg */
+  .kbd{display:inline-block; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:6px; padding:2px 8px; font-family:'Cinzel'; font-size:12px; margin-inline-end:6px;}
+  .kbd-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px dashed rgba(255,255,255,0.08); font-size:13.5px;}
+
+  .modal-actions{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;}
+  .ma-btn{cursor:pointer; font-size:12px; padding:8px 14px; border-radius:20px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:var(--ink-dim); transition:.2s; display:flex; align-items:center; gap:6px;}
+  .ma-btn:hover{background:rgba(255,255,255,0.14); color:var(--ink);}
+  .ma-btn.on{background:#e0475f22; color:#ff6b81; border-color:#e0475f55;}
+  .pos-indicator{font-size:11.5px; color:var(--ink-faint); margin-inline-start:auto;}
+
+  /* progress bar for timeline */
+  #storyProgress{position:sticky; top:0; z-index:15; height:3px; background:rgba(255,255,255,0.06); margin-bottom:4px;}
+  #storyProgress i{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--c-trojan), var(--c-odyssey)); transition:width .1s;}
+  .story-controls{display:flex; justify-content:center; gap:10px; margin-bottom:10px;}
+
+  .fam-toggle{cursor:pointer; font-size:11.5px; padding:5px 12px; border-radius:14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:var(--ink-faint); margin-inline-start:auto;}
+  .fam-toggle.active{background:var(--gold-line); color:var(--ink);}
+
+  @keyframes cardIn{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  .card.stagger{animation:cardIn .4s ease backwards;}
+
+  @media print{
+    body *{visibility:hidden;}
+    .modal, .modal *{visibility:visible;}
+    .modal{position:absolute; top:0; right:0; left:0; box-shadow:none; border:none;}
+    .modal .close, .modal-nav, .modal-actions{display:none !important;}
+  }
+
+  @media (max-width:640px){
+    #themePicker{
+      position:static; flex-direction:row; justify-content:center; flex-wrap:wrap;
+      margin:14px auto 0; width:fit-content; background:rgba(255,255,255,0.04);
+    }
+    #scrollTop{ bottom:calc(16px + env(safe-area-inset-bottom)); left:14px; width:42px; height:42px; font-size:16px; }
+    #compareTray{ padding:12px 14px calc(12px + env(safe-area-inset-bottom)); gap:10px; }
+    #compareTray .cmp-go{ width:100%; order:3; }
+    header.hero{ padding:22px 6px 22px; }
+    .kicker{ font-size:10.5px; letter-spacing:.2em; padding:6px 14px; }
+    .subtitle, .movie-note{ font-size:13.5px; line-height:1.85; }
+    .stats{ gap:8px; margin:4px 0 26px; }
+    .stat{ padding:10px 14px; min-width:92px; }
+    .stat b{ font-size:20px; }
+    .toolbar{ gap:6px; }
+    .tb-btn{ font-size:11.5px; padding:7px 11px; }
+    .view-toggle{ gap:6px; }
+    .vt-btn{ font-size:12.5px; padding:9px 16px; flex:1 1 auto; justify-content:center; }
+    .controls{ padding:10px 0 12px; }
+    .search-row{ gap:8px; }
+    .search-box{ min-width:0; padding:9px 12px; }
+    .dice-btn{ padding:10px 14px; font-size:12.5px; }
+    .tabs{ flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start; padding:2px 4px 8px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .tabs::-webkit-scrollbar{ display:none; }
+    .tab{ flex:none; font-size:12.5px; padding:8px 15px; }
+    .fate-tabs{ flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start; padding-bottom:6px; }
+    .fate-chip{ flex:none; }
+    .grid{ grid-template-columns:repeat(auto-fill,minmax(132px,1fr)); gap:11px; }
+    .card{ padding:16px 10px 14px; }
+    .medal{ width:54px; height:54px; font-size:24px; }
+    .card h3{ font-size:13.5px; }
+    .fav-star{ font-size:17px; padding:4px; top:36px; }
+    .wikilink{ opacity:1; font-size:9.5px; padding:3px 7px; }
+    .rel-count{ font-size:9px; }
+    .section-label{ margin:32px 0 14px; }
+    .section-label b{ font-size:14.5px; }
+    #onboardBanner{ flex-direction:column; align-items:stretch; text-align:right; font-size:12px; }
+    .modal-bg{ padding:16px 8px calc(16px + env(safe-area-inset-bottom)); align-items:center; }
+    .modal{ max-width:100%; padding:54px 16px 24px; border-radius:18px; }
+    .modal-medal{ width:62px; height:62px; font-size:26px; }
+    .modal h2{ font-size:20px; }
+    .modal-actions{ gap:6px; }
+    .ma-btn{ font-size:11px; padding:7px 11px; }
+    .pos-indicator{ width:100%; margin-inline-start:0; margin-top:6px; }
+    .badge-row{ gap:6px; }
+    .chap{ padding-right:52px; }
+    .chap-num{ width:42px; height:42px; font-size:13px; }
+    .timeline::before{ right:20px; }
+    .chap-card{ padding:14px 14px; }
+    .chap-head h3{ font-size:14px; }
+    .story-controls{ gap:8px; }
+    footer{ font-size:11.5px; padding-inline:4px; }
+    #graphSvgWrap svg{ min-width:640px; }
+    #graphView{ overflow-x:auto; }
+  }
+  @media (max-width:380px){
+    .grid{ grid-template-columns:repeat(auto-fill,minmax(112px,1fr)); }
+    h1.title{ font-size:32px; }
+  }
+</style>
+</head>
+<body data-theme="night">
+
+<div id="stars"></div>
+
+<div id="themePicker" title="تغییر تم رنگی">
+  <div class="theme-swatch active" data-theme="night" title="شب المپ" style="background:linear-gradient(135deg,#d9b25c,#080a12);"></div>
+  <div class="theme-swatch" data-theme="fire" title="آتش تروا" style="background:linear-gradient(135deg,#e07a3a,#150a08);"></div>
+  <div class="theme-swatch" data-theme="sea" title="دریای ادیسه" style="background:linear-gradient(135deg,#4fb8cc,#050f16);"></div>
+  <div class="theme-swatch" data-theme="papyrus" title="پاپیروس باستان" style="background:linear-gradient(135deg,#8a5a1e,#eee2c6);"></div>
+  <div class="theme-swatch" data-theme="purple" title="جادوی بنفش" style="background:linear-gradient(135deg,#a98ce0,#0e0916);"></div>
+  <div class="theme-swatch" data-theme="bronze" title="برنز کلاسیک" style="background:linear-gradient(135deg,#b8863a,#100d0a);"></div>
+</div>
+
+<div id="scrollTop" title="بازگشت به بالا">↑</div>
+<div id="toast"></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">پیش از دیدن ادیسه نولان</div>
+    <h1 class="title">ایلیاد و ادیسه<br>دانشنامه شخصیت‌ها</h1>
+    <p class="subtitle">
+      نقشهٔ کامل و تعاملی از تمام خدایان، قهرمانان تروآیی، آخائیان و شخصیت‌های سفر بازگشت اودیسئوس؛
+      با نسبت خانوادگی، جبهه‌بندی، قدرت‌های الهی، سرنوشت هرکدام و لینک مستقیم به ویکی‌پدیا.
+      روی هر مدال نگه دارید تا خلاصه‌اش را ببینید، کلیک کنید تا شرح کامل و شبکهٔ روابطش باز شود.
+    </p>
+    <p class="movie-note">
+      فیلم «ادیسه» ساختهٔ کریستوفر نولان بر پایهٔ حماسهٔ «ادیسه» اثر هومر ساخته شده که خود دنبالهٔ ماجراهای «ایلیاد» (نبرد تروا) است.
+      پایین‌تر، بخش «خط سیر داستان» را هم ببینید تا کل ماجرا را از ابتدا تا انتها، تیتروار و به‌ترتیب مرور کنید.
+    </p>
+  </header>
+
+  <div class="stats" id="statsBar"></div>
+
+  <div id="onboardBanner">
+    <div>👋 راهنمای سریع: <b>هاور</b> کنید تا خلاصه ببینید، <b>کلیک</b> کنید برای شرح کامل، دکمهٔ <span class="kbd">/</span> جست‌وجو و <span class="kbd">?</span> راهنمای میانبرها را باز می‌کند. با ⭐ شخصیت‌های محبوبتان را نشان کنید و از تم‌های رنگی بالا-چپ صفحه لذت ببرید.</div>
+    <div class="x" id="onboardClose">✕</div>
+  </div>
+
+  <div class="toolbar" id="toolbar">
+    <div class="tb-btn" id="fontMinus">A-</div>
+    <div class="tb-btn" id="fontPlus">A+</div>
+    <div class="tb-btn" id="motionToggle">🌙 کاهش انیمیشن</div>
+    <div class="tb-btn" id="sortToggle">🔤 مرتب‌سازی الفبایی</div>
+    <div class="tb-btn" id="resetBtn">♻️ بازنشانی فیلترها</div>
+    <div class="tb-btn" id="helpBtn">⌨️ میانبرها</div>
+  </div>
+
+  <div class="view-toggle" id="viewToggle">
+    <div class="vt-btn active" data-view="gallery">🖼️ گالری شخصیت‌ها</div>
+    <div class="vt-btn" data-view="timeline">📜 خط سیر داستان</div>
+    <div class="vt-btn" data-view="graph">🕸️ نقشهٔ کامل روابط</div>
+  </div>
+
+  <div id="galleryView">
+    <div class="controls">
+      <div class="search-row">
+        <div class="search-box">
+          <span>🔍</span>
+          <input id="search" type="text" placeholder="جست‌وجوی نام شخصیت... مثلاً «آشیل» یا «پنه‌لوپه» (میانبر: /)">
+        </div>
+        <div class="dice-btn" id="diceBtn">🎲 شخصیت شانسی</div>
+      </div>
+      <div class="tabs" id="tabs">
+        <div class="tab active" data-f="all"><span class="dot" style="background:#ecdcae"></span> همه</div>
+        <div class="tab" data-f="god"><span class="dot" style="background:#d9b25c"></span> خدایان المپ</div>
+        <div class="tab" data-f="trojan"><span class="dot" style="background:#c0553a"></span> تروآیی‌ها</div>
+        <div class="tab" data-f="greek"><span class="dot" style="background:#3f95a8"></span> آخائیان (یونانی‌ها)</div>
+        <div class="tab" data-f="odyssey"><span class="dot" style="background:#8b6fc9"></span> سفر ادیسه</div>
+        <div class="tab" data-f="fav">⭐ علاقه‌مندی‌های من</div>
+      </div>
+      <div class="fate-tabs" id="fateTabs">
+        <div class="fate-chip active" data-fate="all">همهٔ سرنوشت‌ها</div>
+        <div class="fate-chip" data-fate="alive">🌿 زنده ماندند</div>
+        <div class="fate-chip" data-fate="dead">⚰️ کشته شدند</div>
+        <div class="fate-chip" data-fate="immortal">♾️ جاودان / الهی</div>
+      </div>
+    </div>
+    <div id="recentBar"></div>
+    <div id="content"></div>
+  </div>
+
+  <div id="timelineView"></div>
+
+  <div id="graphView">
+    <div class="section-label"><b>نقشهٔ کامل شبکهٔ روابط</b><span class="line"></span><span id="graphCount"></span></div>
+    <p style="text-align:center; color:var(--ink-faint); font-size:13px; max-width:600px; margin:0 auto 6px;">هر نقطه یک شخصیت است؛ خطوط نشان‌دهندهٔ رابطهٔ مستقیم هستند. روی هر گره کلیک کنید تا شرح کامل باز شود.</p>
+    <div class="graph-legend">
+      <span><i style="background:#d9b25c"></i> خدایان المپ</span>
+      <span><i style="background:#c0553a"></i> تروآیی‌ها</span>
+      <span><i style="background:#3f95a8"></i> آخائیان</span>
+      <span><i style="background:#8b6fc9"></i> سفر ادیسه</span>
+    </div>
+    <div id="graphSvgWrap"></div>
+  </div>
+
+  <footer>
+    محتوا برگرفته و بازنویسی‌شده بر پایهٔ اسطوره‌های یونان باستان (ایلیاد و ادیسهٔ هومر) و منابع دانشنامه‌ای عمومی از جمله ویکی‌پدیا است؛ صرفاً برای مطالعهٔ آموزشی و پیش‌زمینهٔ سینمایی گردآوری شده.<br>
+    روی هر شخصیت کلیک کنید تا شبکهٔ روابطش را کشف کنید، یا از دکمهٔ ویکی‌پدیا برای اطلاعات بیشتر استفاده کنید.
+    <div class="credit-line">ساخته شده توسط <a href="https://t.me/favme" target="_blank" rel="noopener">مهرداد آزادگان</a> · <a href="https://t.me/favme" target="_blank" rel="noopener">t.me/favme</a></div>
+  </footer>
+</div>
+
+<div id="tooltip"></div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modalBox">
+    <div class="close" id="modalClose">✕</div>
+    <div class="modal-nav prev" id="navPrev">▶</div>
+    <div class="modal-nav next" id="navNext">◀</div>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="shortcutsBg">
+  <div class="modal" style="max-width:420px;">
+    <div class="close" id="shortcutsClose">✕</div>
+    <h2 style="margin-top:0;">⌨️ میانبرهای صفحه‌کلید</h2>
+    <div class="kv-row"></div>
+    <div class="kbd-row"><span><span class="kbd">/</span> فوکوس روی جست‌وجو</span></div>
+    <div class="kbd-row"><span><span class="kbd">?</span> نمایش همین راهنما</span></div>
+    <div class="kbd-row"><span><span class="kbd">Esc</span> بستن مودال باز</span></div>
+    <div class="kbd-row"><span><span class="kbd">→</span> شخصیت قبلی در مودال</span></div>
+    <div class="kbd-row"><span><span class="kbd">←</span> شخصیت بعدی در مودال</span></div>
+    <div class="kbd-row" style="border-bottom:none;"><span>👆 روی موبایل: swipe راست/چپ برای پیمایش</span></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="cmpBg">
+  <div class="modal" style="max-width:760px;">
+    <div class="close" id="cmpClose">✕</div>
+    <h2 style="margin-top:0;">مقایسهٔ دو شخصیت</h2>
+    <div class="cmp-wrap" id="cmpWrap"></div>
+  </div>
+</div>
+
+<div id="compareTray">
+  <span style="color:var(--ink-faint); font-size:12.5px;">🆚 مقایسه:</span>
+  <div id="cmpSlots" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
+  <button class="cmp-go" id="cmpGo">مقایسه کن</button>
+</div>
+
+<script>
+/* ================= DATA ================= */
+const FAC = {
+  god:     {label:"خدای المپ",        color:"#d9b25c", dim:"#8a7433"},
+  trojan:  {label:"جبهه تروا",        color:"#c0553a", dim:"#6e3225"},
+  greek:   {label:"جبهه آخائیان",     color:"#3f95a8", dim:"#215663"},
+  odyssey: {label:"سفر بازگشت",       color:"#8b6fc9", dim:"#4e3d78"}
+};
+const FATE = {
+  immortal:{icon:"♾️", label:"جاودان / الهی"},
+  alive:{icon:"🌿", label:"زنده ماند"},
+  dead:{icon:"⚰️", label:"کشته شد / درگذشت"}
+};
+
+const DATA = [
+/* ---------------- GODS ---------------- */
+{id:"zeus", fac:"god", status:"immortal", icon:"⚡", name:"زئوس", epithet:"پدر خدایان و آدمیان، فرمانروای المپ",
+ wiki:"https://en.wikipedia.org/wiki/Zeus",
+ tip:"داور نهایی جنگ؛ گاه به تروآیی‌ها و گاه به یونانی‌ها متمایل می‌شود، اما در نهایت بی‌طرف می‌ماند.",
+ power:"رعد و برق، فرمانروایی بر آسمان و سرنوشت نهایی جنگ",
+ desc:"زئوس پادشاه خدایان المپ و برترین قدرت جهان اسطوره‌ای یونان است. در ایلیاد، او رسماً بی‌طرف اعلام می‌کند اما به‌خاطر التماس تتیس (مادر آشیل) لحظاتی سپاه یونان را دچار شکست می‌کند تا اهمیت آشیل به همه ثابت شود. زئوس با ترازوی طلایی سرنوشت، لحظهٔ مرگ هکتور را می‌سنجد و اجازه می‌دهد سرنوشت طبیعی خود را طی کند.",
+ rel:[{id:"hera",label:"همسر"},{id:"thetis",label:"از او خواهش شد"},{id:"hermes",label:"پیک و فرزند"},{id:"apollo",label:"پدر"},{id:"artemis",label:"پدر"}]},
+
+{id:"hera", fac:"god", status:"immortal", icon:"👑", name:"هرا", epithet:"ملکهٔ المپ، الهه ازدواج",
+ wiki:"https://en.wikipedia.org/wiki/Hera",
+ tip:"سرسخت‌ترین حامی یونانی‌ها؛ چون پاریس سیب زیبایی را به آفرودیت داد، نه او.",
+ power:"فرمانروایی بر ازدواج و خانواده، قدرت الهی برابر با زئوس در جایگاه",
+ desc:"هرا همسر و خواهر زئوس است و از زمان داوری پاریس -که زیبایی آفرودیت را بر او و آتنا ترجیح داد- کینه‌ای عمیق از تروا دارد. در سراسر ایلیاد او مخفیانه و آشکارا برای شکست تروآیی‌ها نقشه می‌کشد، حتی زئوس را با نیرنگ عشقی به خواب می‌برد تا یونانی‌ها فرصت پیشروی بیابند.",
+ rel:[{id:"zeus",label:"همسر"},{id:"paris",label:"از او کینه دارد"},{id:"aphrodite",label:"رقیب در داوری"},{id:"athena",label:"هم‌پیمان"}]},
+
+{id:"poseidon", fac:"god", status:"immortal", icon:"🔱", name:"پوزئیدون", epithet:"خدای دریاها و زمین‌لرزه",
+ wiki:"https://en.wikipedia.org/wiki/Poseidon",
+ tip:"در ایلیاد حامی یونانی‌هاست، اما در ادیسه به‌خاطر کور کردن پسرش پولیفموس، دشمن قسم‌خوردهٔ اودیسئوس می‌شود.",
+ power:"فرمانروایی بر دریاها، طوفان‌ها و زمین‌لرزه، سه‌شاخهٔ الهی",
+ desc:"پوزئیدون برادر زئوس و فرمانروای اقیانوس‌هاست. در جنگ تروا مخفیانه از یونانی‌ها حمایت می‌کند. اما داستان اصلی او در ادیسه رقم می‌خورد: پس از آنکه اودیسئوس پسرش پولیفموسِ سیکلوپس را کور می‌کند، پوزئیدون با خشمی الهی سفر بازگشت اودیسئوس را ده سال به تأخیر می‌اندازد و کشتی‌هایش را در طوفان‌ها نابود می‌کند.",
+ rel:[{id:"polyphemus",label:"پدر"},{id:"odysseus",label:"دشمن قسم‌خورده"},{id:"scylla_charybdis",label:"فرمانروای دریای آن‌ها"}]},
+
+{id:"athena", fac:"god", status:"immortal", icon:"🦉", name:"آتنا", epithet:"الهه خرد، جنگ عادلانه و صنعت",
+ wiki:"https://en.wikipedia.org/wiki/Athena",
+ tip:"حامی همیشگی یونانی‌ها، به‌ویژه اودیسئوس؛ الهام‌بخش نقشهٔ اسب چوبی تروا.",
+ power:"خرد استراتژیک، مهارت در جنگ و صنعتگری، محافظت الهی",
+ desc:"آتنا از سیب داوری پاریس رنجیده و در کنار هرا علیه تروا ایستاده است. او راهنمای مخفی دیومدس در میدان جنگ، و مهم‌تر از همه، پشتیبان همیشگی اودیسئوس است -هم در نقشهٔ اسب تروا و هم در تمام ادیسه، جایی که بارها به شکل انسان درمی‌آید تا او و پسرش تلماخوس را یاری کند.",
+ rel:[{id:"odysseus",label:"محافظ ویژه"},{id:"telemachus",label:"راهنما"},{id:"paris",label:"از او کینه دارد"},{id:"diomedes",label:"الهام‌بخش در جنگ"}]},
+
+{id:"apollo", fac:"god", status:"immortal", icon:"☀️", name:"آپولون", epithet:"خدای خورشید، موسیقی، پیشگویی و طاعون",
+ wiki:"https://en.wikipedia.org/wiki/Apollo",
+ tip:"حامی اصلی تروا؛ با طاعون یونانی‌ها را تنبیه کرد و به تیر پاریس برای کشتن آشیل جهت داد.",
+ power:"تیراندازی مرگبار، طاعون و بیماری، نور خورشید و پیشگویی",
+ desc:"آپولون از آغاز ایلیاد به دفاع از تروا برمی‌خیزد: وقتی آگاممنون کاهنش را بی‌احترامی می‌کند، بر اردوگاه یونان طاعون می‌فرستد. او هکتور را در میدان جنگ محافظت می‌کند و در نهایت، دست پاریس را هدایت می‌کند تا تیری کشنده به پاشنهٔ آشیل -تنها نقطه‌ضعف او- بنشیند.",
+ rel:[{id:"paris",label:"هدایتگر تیر مرگبار"},{id:"achilles",label:"عامل مرگ او"},{id:"hector",label:"محافظ"},{id:"cassandra",label:"عاشق و نفرین‌کننده"},{id:"artemis",label:"خواهر"}]},
+
+{id:"aphrodite", fac:"god", status:"immortal", icon:"🌹", name:"آفرودیت", epithet:"الهه عشق و زیبایی",
+ wiki:"https://en.wikipedia.org/wiki/Aphrodite",
+ tip:"سیب طلایی داوری پاریس را برد؛ به پاداش، هلن را عاشق پاریس کرد -جرقهٔ کل جنگ تروا.",
+ power:"افسون عشق و میل، زیبایی غیرقابل‌مقاومت",
+ desc:"آفرودیت با وعدهٔ عشق زیباترین زن جهان -هلن- زیبایی خود را در داوری پاریس برنده اعلام کرد. همین وعده مستقیماً باعث فرار هلن با پاریس به تروا و آغاز جنگ شد. او در طول جنگ محافظ پاریس و مادر مهربان آینیاس است.",
+ rel:[{id:"paris",label:"به او سیب داد"},{id:"helen",label:"عشقشان را رقم زد"},{id:"aeneas",label:"مادر"},{id:"hera",label:"رقیب در داوری"},{id:"athena",label:"رقیب در داوری"}]},
+
+{id:"ares", fac:"god", status:"immortal", icon:"⚔️", name:"آرس", epithet:"خدای جنگ خشن و بی‌قاعده",
+ wiki:"https://en.wikipedia.org/wiki/Ares",
+ tip:"حامی تروا در میدان نبرد؛ حتی توسط دیومدس با یاری آتنا زخمی شد.",
+ power:"خشونت محض جنگ، بی‌رحمی در نبرد تن‌به‌تن",
+ desc:"آرس نمایندهٔ سویهٔ خشن و بی‌منطق جنگ است و برخلاف آتنا که نماد جنگِ حساب‌شده است، به تروآیی‌ها یاری می‌رساند. در یکی از صحنه‌های ایلیاد، دیومدس با کمک مستقیم آتنا نیزه‌ای به آرس می‌زند و او را مجروح و فراری می‌کند.",
+ rel:[{id:"aphrodite",label:"معشوق"},{id:"diomedes",label:"مجروح‌کننده‌اش"},{id:"athena",label:"رقیب"}]},
+
+{id:"artemis", fac:"god", status:"immortal", icon:"🏹", name:"آرتمیس", epithet:"الهه شکار و بیابان، خواهر دوقلوی آپولون",
+ wiki:"https://en.wikipedia.org/wiki/Artemis",
+ tip:"در کنار برادرش آپولون، از تروا حمایت می‌کند.",
+ power:"مهارت بی‌نظیر در تیراندازی، فرمانروایی بر جانوران وحشی",
+ desc:"آرتمیس هم‌پیمان برادرش آپولون در حمایت از تروا است. پیش از حرکت ناوگان یونان به‌سوی تروا، به‌خاطر خشمی که آگاممنون برانگیخته بود، بادها را آرام نگه‌داشت تا سپاه یونان مجبور شود دختر آگاممنون، ایفی‌گنیا، را قربانی کند.",
+ rel:[{id:"apollo",label:"برادر"},{id:"agamemnon",label:"از او کینه گرفت"}]},
+
+{id:"hermes", fac:"god", status:"immortal", icon:"🪽", name:"هرمس", epithet:"پیک خدایان، راهنمای مسافران و ارواح",
+ wiki:"https://en.wikipedia.org/wiki/Hermes",
+ tip:"در ایلیاد پریام پیر را مخفیانه به اردوگاه آشیل می‌برد؛ در ادیسه گیاه جادویی «مولی» را به اودیسئوس می‌دهد.",
+ power:"سرعت مافوق‌طبیعی، عبور آزاد میان دنیای زندگان و مردگان",
+ desc:"هرمس نقشی کلیدی و صلح‌طلبانه در هر دو حماسه دارد. در پایان ایلیاد، پادشاه پیر پریام را با نامرئی‌کردنش از میان اردوگاه دشمن به چادر آشیل می‌برد تا جسد هکتور را باز پس بگیرد. در ادیسه، به دستور زئوس، هم به کالیپسو خبر آزادی اودیسئوس را می‌رساند و هم گیاه «مولی» را برای مقابله با جادوی سیرسه به او می‌دهد.",
+ rel:[{id:"priam",label:"راهنمای مخفی"},{id:"achilles",label:"او را نزد نبرد برد"},{id:"odysseus",label:"یاری‌رسان با گیاه مولی"},{id:"calypso",label:"پیام‌آور فرمان آزادی"}]},
+
+{id:"hephaestus", fac:"god", status:"immortal", icon:"🔨", name:"هفائستوس", epithet:"خدای آتش و آهنگری، همسر آفرودیت",
+ wiki:"https://en.wikipedia.org/wiki/Hephaestus",
+ tip:"به درخواست تتیس، زره و سپر افسانه‌ای آشیل را ساخت.",
+ power:"آهنگری الهی، ساخت سلاح و ابزار جادویی",
+ desc:"هفائستوس لنگ و رانده‌شده از المپ، اما چیره‌دست‌ترین صنعتگر خدایان است. وقتی تتیس برای فرزندش آشیل -که زره‌اش را پاتروکلوس در میدان از دست داده بود- درخواست کمک می‌کند، هفائستوس یک‌شبه زرهی الهی با سپری می‌سازد که تمام جهان بر آن نقش بسته است.",
+ rel:[{id:"thetis",label:"به درخواست او سلاح ساخت"},{id:"achilles",label:"سازندهٔ زره او"},{id:"aphrodite",label:"همسر"}]},
+
+{id:"eris", fac:"god", status:"immortal", icon:"🍏", name:"اریس", epithet:"الهه نزاع و کشمکش",
+ wiki:"https://en.wikipedia.org/wiki/Eris_(mythology)",
+ tip:"سیب طلایی «برای زیباترین» را در جشن عروسی پرتاب کرد و رقابت هرا، آتنا و آفرودیت را رقم زد.",
+ power:"برانگیختن نزاع و رقابت",
+ desc:"اریس تنها خدایی است که به عروسی پلئوس و تتیس (والدین آشیل) دعوت نشد. او در انتقام، سیبی طلایی با نوشتهٔ «برای زیباترین» میان مهمانان انداخت. سه الهه -هرا، آتنا و آفرودیت- بر سر آن به رقابت افتادند و پاریس به‌عنوان داور انتخاب شد؛ داوری‌ای که مستقیماً به آغاز جنگ تروا انجامید.",
+ rel:[{id:"paris",label:"داور نزاع او شد"},{id:"hera",label:"رقیب سیب"},{id:"athena",label:"رقیب سیب"},{id:"aphrodite",label:"برندهٔ سیب"}]},
+
+{id:"thetis", fac:"god", status:"immortal", icon:"🌊", name:"تتیس", epithet:"الههٔ دریایی (نریید)، مادر آشیل",
+ wiki:"https://en.wikipedia.org/wiki/Thetis",
+ tip:"مادری که سرنوشت پسرش را می‌داند: یا عمری کوتاه و پرافتخار، یا زندگی‌ای طولانی و گمنام.",
+ power:"جادوی دریایی، نفوذ نزد زئوس",
+ desc:"تتیس الههٔ دریایی است که با فانی‌ای به‌نام پلئوس ازدواج کرد و آشیل را به دنیا آورد. او می‌داند پسرش در تروا خواهد مرد اگر بجنگد، اما شکوهی جاودان کسب خواهد کرد. وقتی آگاممنون آشیل را تحقیر می‌کند، تتیس از زئوس می‌خواهد یونانی‌ها را تا بازگشت آشیل به جنگ، شکست دهد.",
+ rel:[{id:"achilles",label:"مادر"},{id:"zeus",label:"از او خواهش کرد"},{id:"hephaestus",label:"از او زره خواست"}]},
+
+/* ---------------- TROJANS ---------------- */
+{id:"priam", fac:"trojan", status:"dead", icon:"👴", name:"پریام", epithet:"پادشاه پیر تروا",
+ wiki:"https://en.wikipedia.org/wiki/Priam",
+ tip:"شبانه به چادر آشیل رفت تا پابوسی کند و جسد پسرش هکتور را باز پس بگیرد.",
+ desc:"پریام پادشاه سالخوردهٔ تروا و پدر پنجاه پسر (از جمله هکتور، پاریس، دیفوبوس) و دختران بسیار از جمله کاساندراست. او در اوج غرور، به‌تنهایی و شبانه به اردوگاه دشمن می‌رود، دست‌های قاتل پسرش آشیل را می‌بوسد و از او التماس می‌کند جسد هکتور را برای مراسم تدفین بازگرداند. او خود در شب سقوط تروا، در کنار محراب خانه‌اش کشته می‌شود.",
+ rel:[{id:"hecuba",label:"همسر"},{id:"hector",label:"پسر"},{id:"paris",label:"پسر"},{id:"cassandra",label:"دختر"},{id:"achilles",label:"نزد او التماس کرد"},{id:"hermes",label:"راهنمای او"}]},
+
+{id:"hecuba", fac:"trojan", status:"dead", icon:"👑", name:"هکوبا", epithet:"ملکهٔ تروا",
+ wiki:"https://en.wikipedia.org/wiki/Hecuba",
+ tip:"مادری که شاهد مرگ بیشتر فرزندانش و سقوط شهرش شد.",
+ desc:"هکوبا همسر پریام و مادر هکتور، پاریس، کاساندرا و بسیاری دیگر است. او نمادی از رنج مادرانه در جنگ است؛ پیش از نبرد نهایی هکتور با آشیل، از بالای دیوارهای تروا التماس می‌کند پسرش وارد میدان نشود. پس از سقوط شهر، به اسارت یونانی‌ها درمی‌آید.",
+ rel:[{id:"priam",label:"همسر"},{id:"hector",label:"پسر"},{id:"cassandra",label:"دختر"},{id:"paris",label:"پسر"}]},
+
+{id:"hector", fac:"trojan", status:"dead", icon:"🛡️", name:"هکتور", epithet:"بزرگ‌ترین قهرمان و فرماندهٔ تروا",
+ wiki:"https://en.wikipedia.org/wiki/Hector",
+ tip:"شریف‌ترین جنگجوی حماسه؛ در نبرد تن‌به‌تن به دست آشیل کشته شد تا انتقام پاتروکلوس گرفته شود.",
+ desc:"هکتور فرمانده ارتش تروا، پسر ارشد پریام و همسر آندروماک است. برخلاف بسیاری از قهرمانان، انگیزهٔ او افتخار شخصی نیست بلکه دفاع از خانواده و شهرش است. او در اشتباه، زرهِ آشیل را از پاتروکلوسِ کشته‌شده می‌رباید و می‌پوشد؛ همین کار خشم آشیل را چنان برمی‌انگیزد که در نبردی نهایی دور دیوارهای تروا، هکتور را می‌کشد و جسدش را با ارابه می‌کشاند.",
+ rel:[{id:"priam",label:"پدر"},{id:"hecuba",label:"مادر"},{id:"andromache",label:"همسر"},{id:"paris",label:"برادر"},{id:"cassandra",label:"خواهر"},{id:"patroclus",label:"کشندهٔ او"},{id:"achilles",label:"قاتل نهایی او"},{id:"apollo",label:"محافظ الهی"}]},
+
+{id:"paris", fac:"trojan", status:"dead", icon:"🏹", name:"پاریس", epithet:"شاهزادهٔ تروا، ربایندهٔ هلن",
+ wiki:"https://en.wikipedia.org/wiki/Paris_(mythology)",
+ tip:"داوری او میان سه الهه، و ربودن هلن، جرقهٔ کل جنگ تروا بود؛ در پایان با تیر آشیل را کشت.",
+ desc:"پاریس با انتخاب آفرودیت به‌عنوان زیباترین الهه، هلنِ زیبا -همسر منلائوس- را به‌عنوان جایزه دریافت کرد و او را به تروا برد؛ همین ربایش علت رسمی جنگ تروا شد. پاریس جنگجویی چندان زبده نیست و ترجیح می‌دهد از دور تیراندازی کند، اما همین تیراندازی، با هدایت آپولون، به پاشنهٔ آشیل -تنها نقطه‌ضعف او- اصابت کرده و بزرگ‌ترین قهرمان یونان را از پای درمی‌آورد. خودش نیز اندکی بعد در نبرد کشته می‌شود.",
+ rel:[{id:"helen",label:"او را ربود/عاشقش شد"},{id:"aphrodite",label:"به او سیب داد"},{id:"hector",label:"برادر"},{id:"priam",label:"پدر"},{id:"achilles",label:"قاتل او"},{id:"deiphobus",label:"برادر"}]},
+
+{id:"helen", fac:"trojan", status:"alive", icon:"💫", name:"هلن", epithet:"زیباترین زن جهان، ملکهٔ اسپارت",
+ wiki:"https://en.wikipedia.org/wiki/Helen_of_Troy",
+ tip:"همسر سابق منلائوس؛ فرار او (یا ربوده‌شدنش) با پاریس، دلیل رسمی جنگ تروا شد.",
+ desc:"هلن دختر زئوس و لدا، و همسر منلائوسِ پادشاه اسپارت بود. با افسون آفرودیت، عاشق پاریس شد و به تروا رفت -یا به روایتی ربوده شد. در حماسه، هلن خود از این جنگ خونین که به‌خاطرش رخ داده رنج می‌برد. پس از سقوط تروا، به اسپارت و نزد منلائوس بازمی‌گردد.",
+ rel:[{id:"menelaus",label:"همسر سابق"},{id:"paris",label:"معشوق در تروا"},{id:"aphrodite",label:"افسون‌کننده"},{id:"deiphobus",label:"همسر پس از مرگ پاریس"}]},
+
+{id:"andromache", fac:"trojan", status:"alive", icon:"🕊️", name:"آندروماک", epithet:"همسر هکتور",
+ wiki:"https://en.wikipedia.org/wiki/Andromache",
+ tip:"در یکی از غم‌انگیزترین صحنه‌های ایلیاد، از هکتور می‌خواهد وارد میدان نشود.",
+ desc:"آندروماک همسر وفادار هکتور و مادر پسرشان آستیاناکس است. صحنهٔ خداحافظی او با هکتور کنار دروازه‌های تروا -جایی که پسرشان از ترس کلاه‌خود پدر گریه می‌کند- یکی از انسانی‌ترین لحظات حماسه است. پس از سقوط تروا، به کنیزی یکی از قهرمانان یونانی درمی‌آید.",
+ rel:[{id:"hector",label:"همسر"},{id:"priam",label:"پدرشوهر"}]},
+
+{id:"cassandra", fac:"trojan", status:"dead", icon:"🔮", name:"کاساندرا", epithet:"شاهدخت پیشگو",
+ wiki:"https://en.wikipedia.org/wiki/Cassandra",
+ tip:"آپولون به او قدرت پیشگویی داد، اما وقتی عشقش را رد کرد، نفرینش کرد که هیچ‌کس حرفش را باور نکند.",
+ desc:"کاساندرا دختر پریام و هکوباست که موهبت پیشگویی دقیق را از آپولون گرفت، اما پس از رد کردن عشق او، نفرین شد: هر پیشگویی‌اش درست از آب درمی‌آید، ولی هیچ‌کس باورش نمی‌کند. او از پیش دربارهٔ اسب تروا و سقوط شهر هشدار می‌دهد، اما نادیده گرفته می‌شود؛ در شب سقوط، مورد بی‌حرمتی قرار می‌گیرد و سرانجام در یونان کشته می‌شود.",
+ rel:[{id:"apollo",label:"عاشق و نفرین‌کننده"},{id:"priam",label:"پدر"},{id:"hecuba",label:"مادر"},{id:"ajax_lesser",label:"مورد بی‌حرمتی او"}]},
+
+{id:"aeneas", fac:"trojan", status:"alive", icon:"🔥", name:"آینیاس", epithet:"قهرمان تروآیی، پسر آفرودیت",
+ wiki:"https://en.wikipedia.org/wiki/Aeneas",
+ tip:"از معدود قهرمانان تروآیی که از سقوط شهر جان به در برد و طبق افسانه، بنیان‌گذار نسل رومیان شد.",
+ desc:"آینیاس پسر آفرودیت و آنخیزیس است، جنگجویی شجاع در کنار هکتور. مادرش بارها او را در میدان جنگ نجات می‌دهد. طبق افسانه‌های بعدی (حماسهٔ آئنیید ویرژیل)، او پس از سقوط تروا با پدر پیرش بر دوش می‌گریزد و سرانجام در ایتالیا نسل رومیان را بنیان می‌نهد.",
+ rel:[{id:"aphrodite",label:"مادر"},{id:"hector",label:"هم‌رزم"}]},
+
+{id:"sarpedon", fac:"trojan", status:"dead", icon:"⚔️", name:"سارپدون", epithet:"پسر زئوس، پادشاه لیکیه، متحد تروا",
+ wiki:"https://en.wikipedia.org/wiki/Sarpedon",
+ tip:"پدرش زئوس شاهد مرگ او بود اما اجازه داد سرنوشت طبیعی‌اش رقم بخورد.",
+ desc:"سارپدون فرزند فانی زئوس و فرماندهٔ نیروهای متحد لیکیه در کنار تروا است. در نبردی سخت، پاتروکلوس -در زره آشیل- او را می‌کشد؛ زئوس با اندوه، قطرات خون به شکل باران بر زمین می‌باراند اما دخالت نمی‌کند و اجازه می‌دهد سرنوشت پسرش را ببرد.",
+ rel:[{id:"zeus",label:"پدر"},{id:"patroclus",label:"کشندهٔ او"}]},
+
+{id:"deiphobus", fac:"trojan", status:"dead", icon:"🗡️", name:"دیفوبوس", epithet:"برادر هکتور و پاریس",
+ wiki:"https://en.wikipedia.org/wiki/Deiphobus",
+ tip:"پس از مرگ پاریس، با هلن ازدواج کرد.",
+ desc:"دیفوبوس یکی دیگر از پسران پریام و جنگجویی توانا در کنار برادرانش است. پس از کشته‌شدن پاریس در جنگ، با هلن ازدواج می‌کند؛ اما در شب سقوط تروا، به روایتی خودِ هلن او را به دست منلائوس تسلیم می‌کند و او کشته می‌شود.",
+ rel:[{id:"hector",label:"برادر"},{id:"paris",label:"برادر"},{id:"helen",label:"همسر پس از پاریس"}]},
+
+/* ---------------- ACHAEANS / GREEKS ---------------- */
+{id:"agamemnon", fac:"greek", status:"dead", icon:"👑", name:"آگاممنون", epithet:"شاه میکنای، فرمانده کل سپاه یونان",
+ wiki:"https://en.wikipedia.org/wiki/Agamemnon",
+ tip:"غرورش با تحقیر آشیل، بحرانی ساخت که کل ایلیاد حول آن می‌چرخد.",
+ desc:"آگاممنون فرماندهٔ کل اتحاد یونانی‌ها و برادر منلائوس است. وقتی مجبور می‌شود کنیز جنگی‌اش را پس بدهد، به‌عنوان جبران، کنیز آشیل یعنی بریسئیس را از او می‌گیرد؛ این تحقیر باعث می‌شود آشیل از جنگ کناره بگیرد. پس از پیروزی و بازگشت به میکنای، طبق روایات بعدی، به دست همسرش کلوتایمنسترا کشته می‌شود.",
+ rel:[{id:"menelaus",label:"برادر"},{id:"achilles",label:"او را تحقیر کرد"},{id:"artemis",label:"از او کینه گرفت"},{id:"calchas",label:"مشاور پیشگو"}]},
+
+{id:"menelaus", fac:"greek", status:"alive", icon:"🛡️", name:"منلائوس", epithet:"پادشاه اسپارت، همسر هلن",
+ wiki:"https://en.wikipedia.org/wiki/Menelaus",
+ tip:"ربوده‌شدن همسرش هلن، بهانهٔ رسمی گردآوری سپاه یونان علیه تروا شد.",
+ desc:"منلائوس پادشاه اسپارت و همسر هلن است. وقتی هلن با پاریس به تروا می‌رود، منلائوس با کمک برادرش آگاممنون سپاهی عظیم از سراسر یونان گرد می‌آورد تا همسرش را بازپس گیرد. پس از جنگ، هلن را بازمی‌گرداند و به اسپارت بازمی‌گردد.",
+ rel:[{id:"helen",label:"همسر"},{id:"agamemnon",label:"برادر"},{id:"paris",label:"رقیب"}]},
+
+{id:"achilles", fac:"greek", status:"dead", icon:"⚡", name:"آشیل", epithet:"بزرگ‌ترین جنگجوی یونان",
+ wiki:"https://en.wikipedia.org/wiki/Achilles",
+ tip:"تنها نقطه‌ضعفش پاشنهٔ پایش بود؛ مرگ او سرنوشت محتوم اما پرافتخارش بود.",
+ desc:"آشیل پسر پلئوس و الههٔ دریایی تتیس، و نیرومندترین رزمندهٔ یونان است. مادرش هنگام نوزادی او را در رود استیکس فرو برد تا نامیرا شود، اما پاشنه‌ای که با دست گرفته بود آسیب‌پذیر ماند. پس از تحقیر آگاممنون، از جنگ کناره می‌گیرد؛ اما با مرگ دوستِ نزدیکش پاتروکلوس به دست هکتور، خشمگین بازمی‌گردد، هکتور را می‌کشد و جسدش را بی‌حرمت می‌کند. سرانجام خودش نیز با تیر پاریس -هدایت‌شده به‌دست آپولون- بر پاشنه‌اش کشته می‌شود.",
+ rel:[{id:"thetis",label:"مادر"},{id:"patroclus",label:"یار و دوست نزدیک"},{id:"hector",label:"قاتل او را کشت"},{id:"paris",label:"قاتل نهایی او"},{id:"agamemnon",label:"او را تحقیر کرد"},{id:"hephaestus",label:"سازندهٔ زرهش"},{id:"apollo",label:"عامل مرگش"},{id:"priam",label:"نزد او التماس کرد"}]},
+
+{id:"patroclus", fac:"greek", status:"dead", icon:"🤝", name:"پاتروکلوس", epithet:"یار و همراه نزدیک آشیل",
+ wiki:"https://en.wikipedia.org/wiki/Patroclus",
+ tip:"مرگش به دست هکتور، آشیل را از خشم به میدان جنگ بازگرداند.",
+ desc:"پاتروکلوس عزیزترین همراه آشیل از کودکی است. وقتی آشیل از جنگ کناره می‌گیرد، پاتروکلوس زره او را می‌پوشد تا روحیهٔ یونانی‌ها را بازگرداند؛ اما در میدان، هکتور او را می‌کشد. این مرگ، خشمی در آشیل برمی‌انگیزد که مسیر باقی‌ماندهٔ ایلیاد را رقم می‌زند.",
+ rel:[{id:"achilles",label:"یار نزدیک"},{id:"hector",label:"کشندهٔ او"},{id:"sarpedon",label:"او را کشت"}]},
+
+{id:"odysseus", fac:"greek", status:"alive", icon:"🧠", name:"اودیسئوس", epithet:"پادشاه ایتاکا، باهوش‌ترین یونانی",
+ wiki:"https://en.wikipedia.org/wiki/Odysseus",
+ tip:"مخترع نقشهٔ اسب چوبی تروا؛ قهرمان اصلیِ ده‌سال سرگردانی در ادیسه.",
+ desc:"اودیسئوس پادشاه ایتاکا، همسر پنه‌لوپه و پدر تلماخوس است. هوش و نیرنگش -نه فقط زور بازو- عامل اصلی پیروزی یونان است: او طراح اسب چوبی تروا بود که سرانجام شهر را فتح کرد. پس از جنگ، بازگشتش به خانه ده سال طول کشید؛ سفری پر از هیولا، جادوگران، طوفان‌های پوزئیدون و وسوسه‌های الهی که موضوع اصلی حماسهٔ ادیسه است.",
+ rel:[{id:"penelope",label:"همسر"},{id:"telemachus",label:"پسر"},{id:"athena",label:"محافظ الهی"},{id:"poseidon",label:"دشمن الهی"},{id:"polyphemus",label:"او را کور کرد"},{id:"circe",label:"مهمان یک‌ساله"},{id:"calypso",label:"او را ۷ سال نگه داشت"},{id:"laertes",label:"پدر"}]},
+
+{id:"ajax_great", fac:"greek", status:"dead", icon:"🏋️", name:"آژاکس بزرگ", epithet:"غول‌پیکرترین جنگجوی یونان پس از آشیل",
+ wiki:"https://en.wikipedia.org/wiki/Ajax_the_Great",
+ tip:"وقتی زره آشیل به اودیسئوس رسید نه او، از شرم و خشم خودکشی کرد.",
+ desc:"آژاکسِ تلامونی از نظر قدرت بدنی، دومین جنگجوی برتر یونان پس از آشیل است. پس از مرگ آشیل، بر سر وراثت زره افسانه‌ای او با اودیسئوس رقابت می‌کند؛ اما داوران زره را به اودیسئوس می‌دهند. این تحقیر آژاکس را چنان دیوانه می‌کند که گله‌های گوسفند را به‌جای دشمنانش می‌کشد و از شرم، بر شمشیر خود می‌افتد.",
+ rel:[{id:"achilles",label:"هم‌رزم نزدیک"},{id:"odysseus",label:"رقیب بر سر زره"}]},
+
+{id:"ajax_lesser", fac:"greek", status:"dead", icon:"🏹", name:"آژاکس کوچک", epithet:"جنگجوی چابک یونانی از لوکریس",
+ wiki:"https://en.wikipedia.org/wiki/Ajax_the_Lesser",
+ tip:"با بی‌حرمتی به کاساندرا در معبد آتنا، نفرین الهه را برانگیخت و در بازگشت غرق شد.",
+ desc:"آژاکسِ پسر اُئیلئوس، جنگجویی چابک اما بی‌پروا بود. هنگام سقوط تروا، به کاساندرا در معبد آتنا بی‌حرمتی کرد؛ این کار خشم آتنا (و پوزئیدون) را برانگیخت و در سفر بازگشت، کشتی‌اش در طوفانی الهی غرق و خودش نیز کشته شد.",
+ rel:[{id:"cassandra",label:"مورد بی‌حرمتی قرار داد"},{id:"athena",label:"از او کینه گرفت"}]},
+
+{id:"diomedes", fac:"greek", status:"alive", icon:"⚔️", name:"دیومدس", epithet:"جوان‌ترین و بی‌باک‌ترین قهرمانان یونان",
+ wiki:"https://en.wikipedia.org/wiki/Diomedes",
+ tip:"با یاری آتنا، حتی به دو خدا -آفرودیت و آرس- در میدان جنگ زخم زد.",
+ desc:"دیومدس پادشاه آرگوس و از شجاع‌ترین جنگجویان یونان است. در یکی از صحنه‌های حماسی ایلیاد، با نیروی الهیِ اعطاشده از آتنا، حتی الهه آفرودیت و خدای جنگ آرس را زخمی می‌کند -نمونه‌ای کمیاب از انسانی که به خدایان آسیب می‌رساند.",
+ rel:[{id:"athena",label:"الهام‌بخش او"},{id:"aphrodite",label:"او را زخمی کرد"},{id:"ares",label:"او را زخمی کرد"}]},
+
+{id:"nestor", fac:"greek", status:"alive", icon:"📜", name:"نستور", epithet:"پادشاه پیر و مشاور خردمند پیلوس",
+ wiki:"https://en.wikipedia.org/wiki/Nestor_(mythology)",
+ tip:"صدای تجربه و خرد در میان جوانانِ پرشور یونانی.",
+ desc:"نستور مسن‌ترین پادشاه در اردوگاه یونان است و با خاطرات جنگ‌های گذشته، نقش مشاور و آرام‌کنندهٔ اختلافات میان قهرمانان جوان‌تر مانند آشیل و آگاممنون را ایفا می‌کند.",
+ rel:[{id:"agamemnon",label:"مشاور"},{id:"achilles",label:"میانجی اختلافات"}]},
+
+{id:"calchas", fac:"greek", status:"alive", icon:"🔮", name:"کالخاس", epithet:"کاهن و پیشگوی سپاه یونان",
+ wiki:"https://en.wikipedia.org/wiki/Calchas",
+ tip:"او بود که راه‌حل قربانی ایفی‌گنیا و علت طاعون آپولون را افشا کرد.",
+ desc:"کالخاس پیشگوی رسمی سپاه یونان است. او تشخیص می‌دهد طاعونی که آپولون فرستاده به‌خاطر بی‌احترامی آگاممنون به کاهن اوست، و پیش‌تر نیز اعلام کرده بود که برای آرام‌کردن بادها باید ایفی‌گنیا قربانی شود.",
+ rel:[{id:"agamemnon",label:"مشاور پیشگو"},{id:"apollo",label:"مفسر خشم او"}]},
+
+{id:"briseis", fac:"greek", status:"alive", icon:"⛓️", name:"بریسئیس", epithet:"کنیز جنگی آشیل",
+ wiki:"https://en.wikipedia.org/wiki/Briseis",
+ tip:"گرفته‌شدنش توسط آگاممنون، جرقهٔ خشم آشیل و کل داستان ایلیاد بود.",
+ desc:"بریسئیس زنی اسیرشده در جنگ بود که به آشیل به‌عنوان غنیمت رسیده بود. وقتی آگاممنون او را از آشیل می‌گیرد تا آبروی ازدست‌رفته‌اش را جبران کند، آشیل از شدت تحقیر از جنگیدن کناره می‌گیرد -نقطهٔ آغاز کل داستان ایلیاد.",
+ rel:[{id:"achilles",label:"از او گرفته شد"},{id:"agamemnon",label:"او را ربود"}]},
+
+/* ---------------- ODYSSEY-SPECIFIC ---------------- */
+{id:"penelope", fac:"odyssey", status:"alive", icon:"🧵", name:"پنه‌لوپه", epithet:"همسر وفادار اودیسئوس",
+ wiki:"https://en.wikipedia.org/wiki/Penelope",
+ tip:"بیست سال منتظر ماند و با حیلهٔ بافتن و شب‌ها شکافتن پارچه، خواستگاران را سردواند.",
+ desc:"پنه‌لوپه در غیاب بیست‌سالهٔ اودیسئوس، محاصرهٔ ده‌ها خواستگار طمعکار را تحمل می‌کند. او با حیله‌ای نبوغ‌آمیز -قول می‌دهد وقتی کفن پدرشوهرش را بافت انتخاب کند، اما هر شب مخفیانه آن را می‌شکافد- سال‌ها زمان می‌خرد. وفاداری او یکی از ارکان اصلی حماسهٔ ادیسه است.",
+ rel:[{id:"odysseus",label:"همسر"},{id:"telemachus",label:"مادر"},{id:"antinous",label:"خواستگار مزاحم"},{id:"eurycleia",label:"دایهٔ مورد اعتماد"}]},
+
+{id:"telemachus", fac:"odyssey", status:"alive", icon:"🌱", name:"تلماخوس", epithet:"پسر اودیسئوس و پنه‌لوپه",
+ wiki:"https://en.wikipedia.org/wiki/Telemachus",
+ tip:"در غیاب پدر، از نوجوانی به مردی مصمم برای پس‌گرفتن خانه‌اش تبدیل می‌شود.",
+ desc:"تلماخوس هنگام رفتن اودیسئوس به جنگ تروا نوزاد بود. در ادیسه، با راهنمایی آتنا، سفری برای یافتن اخبار پدرش آغاز می‌کند و سرانجام در نبرد نهایی علیه خواستگاران، در کنار پدرش می‌جنگد.",
+ rel:[{id:"odysseus",label:"پدر"},{id:"penelope",label:"مادر"},{id:"athena",label:"راهنما"}]},
+
+{id:"laertes", fac:"odyssey", status:"alive", icon:"🌿", name:"لائرتس", epithet:"پدر پیر اودیسئوس",
+ wiki:"https://en.wikipedia.org/wiki/Laertes_(mythology)",
+ tip:"در غیاب پسرش، در انزوا و باغی کوچک زندگی می‌کرد.",
+ desc:"لائرتس پدر سالخوردهٔ اودیسئوس است که از غم دوری پسر و بی‌نظمی خانه، به کشاورزی در حاشیه پناه برده. در پایان ادیسه، بازگشت پسرش اندوهش را به شادی بدل می‌کند.",
+ rel:[{id:"odysseus",label:"پسر"}]},
+
+{id:"eurycleia", fac:"odyssey", status:"alive", icon:"🧓", name:"اوریکلیا", epithet:"دایهٔ پیر و وفادار اودیسئوس",
+ wiki:"https://en.wikipedia.org/wiki/Eurycleia",
+ tip:"او بود که اودیسئوسِ ناشناس را از زخم قدیمی روی ساقش شناخت.",
+ desc:"اوریکلیا دایه‌ای است که از کودکی اودیسئوس را بزرگ کرده. هنگام بازگشت او در لباس مبدل گدایی، هنگام شست‌وشوی پاهایش، جای زخم قدیمی روی ساق پایش را می‌شناسد و هویتش را کشف می‌کند -اما به دستور اودیسئوس رازش را نگه می‌دارد.",
+ rel:[{id:"odysseus",label:"او را شناخت"},{id:"penelope",label:"خدمتگزار وفادار"}]},
+
+{id:"eumaeus", fac:"odyssey", status:"alive", icon:"🐖", name:"یومائوس", epithet:"چوپان خوک‌های وفادار اودیسئوس",
+ wiki:"https://en.wikipedia.org/wiki/Eumaeus",
+ tip:"در تمام سال‌های غیبت اربابش، صادقانه از اموالش نگهداری کرد.",
+ desc:"یومائوس بردهٔ آزاده و وفادار خانوادهٔ اودیسئوس است. وقتی اودیسئوس در لباس گدا به ایتاکا بازمی‌گردد، نخستین کسی است که او را -بدون شناختنش- با مهربانی پناه می‌دهد، و بعدها در نبرد علیه خواستگاران در کنارش می‌جنگد.",
+ rel:[{id:"odysseus",label:"میزبان و هم‌رزم"}]},
+
+{id:"antinous", fac:"odyssey", status:"dead", icon:"😈", name:"آنتینوس", epithet:"گستاخ‌ترین خواستگار پنه‌لوپه",
+ wiki:"https://en.wikipedia.org/wiki/Antinous_(suitor)",
+ tip:"اولین کسی بود که اودیسئوس در نبرد نهایی با تیر کشت.",
+ desc:"آنتینوس رهبر و بی‌ادب‌ترین خواستگاران پنه‌لوپه است که سال‌ها در خانهٔ اودیسئوس مهمانی گرفته و اموالش را بلعیده‌اند. در صحنهٔ نهایی، اودیسئوس با کمانی که فقط خودش می‌تواند زه کند، نخستین تیر را درست به گلوی او می‌زند.",
+ rel:[{id:"penelope",label:"خواستگار او"},{id:"odysseus",label:"نخستین قربانی او"},{id:"eurymachus",label:"هم‌پیمان"}]},
+
+{id:"eurymachus", fac:"odyssey", status:"dead", icon:"🗡️", name:"اوریماخوس", epithet:"خواستگار زبان‌باز پنه‌لوپه",
+ wiki:"https://en.wikipedia.org/wiki/Eurymachus",
+ tip:"پس از مرگ آنتینوس، سعی کرد اودیسئوس را با چرب‌زبانی راضی کند.",
+ desc:"اوریماخوس دومین خواستگار برجستهٔ پنه‌لوپه است که با چرب‌زبانی سعی می‌کند از خشم اودیسئوس بگریزد، اما او نیز مانند دیگر خواستگاران در نبرد نهایی کشته می‌شود.",
+ rel:[{id:"penelope",label:"خواستگار او"},{id:"antinous",label:"هم‌پیمان"},{id:"odysseus",label:"قربانی نبرد او"}]},
+
+{id:"circe", fac:"odyssey", status:"immortal", icon:"🧙‍♀️", name:"سیرسه", epithet:"جادوگر جزیرهٔ آیایا",
+ wiki:"https://en.wikipedia.org/wiki/Circe",
+ tip:"ملوانان اودیسئوس را به خوک تبدیل کرد؛ خودش یک سال میزبان اودیسئوس بود.",
+ desc:"سیرسه جادوگری الهی است که ملوانان اودیسئوس را با معجونی جادویی به خوک تبدیل می‌کند. اودیسئوس با کمک گیاه «مولی» که هرمس به او داده، در برابر جادویش مصون می‌ماند و او را وادار می‌کند یارانش را انسان کند. سپس یک سال با سیرسه در جزیره‌اش می‌ماند و او راهنمایی‌اش می‌کند که برای مشورت با روح تیرسیاس به دنیای مردگان برود.",
+ rel:[{id:"odysseus",label:"میزبان یک‌ساله"},{id:"hermes",label:"دشمنِ جادویش"},{id:"tiresias",label:"راهنمایی به سویش کرد"}]},
+
+{id:"calypso", fac:"odyssey", status:"immortal", icon:"🏝️", name:"کالیپسو", epithet:"پری دریایی جزیرهٔ اوگوگیا",
+ wiki:"https://en.wikipedia.org/wiki/Calypso_(mythology)",
+ tip:"عاشق اودیسئوس شد و او را هفت سال در جزیره‌اش نگه داشت، حتی وعدهٔ جاودانگی داد.",
+ desc:"کالیپسو نریید زیبایی است که اودیسئوسِ کشتی‌شکسته را نجات داد و هفت سال او را در جزیرهٔ اوگوگیا نگه داشت، تا جایی که پیشنهاد جاودانگی در ازای ماندن همیشگی به او داد. اما اودیسئوس دلتنگ خانه بود؛ سرانجام به فرمان زئوس که هرمس ابلاغ کرد، کالیپسو مجبور به آزادکردن او شد.",
+ rel:[{id:"odysseus",label:"او را ۷ سال نگه داشت"},{id:"hermes",label:"فرمان آزادی را آورد"}]},
+
+{id:"polyphemus", fac:"odyssey", status:"immortal", icon:"👁️", name:"پولیفموس", epithet:"غول یک‌چشم سیکلوپس، پسر پوزئیدون",
+ wiki:"https://en.wikipedia.org/wiki/Polyphemus",
+ tip:"اودیسئوس با نیرنگ «هیچ‌کس» او را مست و کور کرد -اما این پیروزی، خشم پوزئیدون را برانگیخت.",
+ desc:"پولیفموس غول یک‌چشمی است که اودیسئوس و یارانش را در غارش زندانی می‌کند و چند نفرشان را می‌خورد. اودیسئوس با نیرنگ -معرفی خود با نام «هیچ‌کس»- او را مست می‌کند و چشمش را کور می‌کند؛ اما وقتی با غرور نام واقعی‌اش را فریاد می‌زند، پولیفموس از پدرش پوزئیدون نفرین بازگشت سخت را طلب می‌کند.",
+ rel:[{id:"poseidon",label:"پدر"},{id:"odysseus",label:"کورکنندهٔ او"}]},
+
+{id:"tiresias", fac:"odyssey", status:"dead", icon:"👻", name:"تیرسیاس", epithet:"پیشگوی نابینای دنیای مردگان",
+ wiki:"https://en.wikipedia.org/wiki/Tiresias",
+ tip:"حتی پس از مرگ، تنها روحی است که در دنیای زیرین هوشیاری کامل خود را حفظ کرده.",
+ desc:"تیرسیاس پیشگوی نابینای تِبای بود که حتی در دنیای مردگان (هادس) قدرت پیشگویی‌اش را از دست نداده. اودیسئوس برای دیدن او به دنیای زیرین سفر می‌کند تا مسیر بازگشت به خانه و خطرات پیش رو -از جمله لزوم احترام به گاوهای خورشید- را بشنود.",
+ rel:[{id:"odysseus",label:"راهنمای سفرش"},{id:"circe",label:"او را نزد او فرستاد"}]},
+
+{id:"aeolus", fac:"odyssey", status:"immortal", icon:"🌬️", name:"آیولوس", epithet:"خدای فرمانروای بادها",
+ wiki:"https://en.wikipedia.org/wiki/Aeolus_(son_of_Hippotes)",
+ tip:"کیسه‌ای پر از بادهای مخالف به اودیسئوس داد که ملوانانش از سرِ کنجکاوی بازش کردند.",
+ desc:"آیولوس فرمانروای بادهاست که به اودیسئوس کیسه‌ای می‌دهد که تمام بادهای نامساعد در آن حبس شده، تا فقط باد موافق کشتی را به خانه براند. اما وقتی ایتاکا در چشم‌رس بود، ملوانان کنجکاو کیسه را باز کردند به گمان اینکه طلاست، و طوفانی آنان را دوباره به دوردست پرتاب کرد.",
+ rel:[{id:"odysseus",label:"کیسهٔ باد به او داد"}]},
+
+{id:"nausicaa", fac:"odyssey", status:"alive", icon:"🌊", name:"نائوسیکا", epithet:"شاهدخت جوان فایاسی‌ها",
+ wiki:"https://en.wikipedia.org/wiki/Nausicaa",
+ tip:"اودیسئوسِ کشتی‌شکسته و برهنه را در ساحل یافت و بی‌آنکه بترسد، یاری‌اش کرد.",
+ desc:"نائوسیکا دختر پادشاه آلکینوئوس است. هنگامی‌که برای شست‌وشوی لباس به ساحل می‌رود، اودیسئوسِ غرق‌شده و رنجور را می‌یابد، به او لباس و غذا می‌دهد و او را به قصر پدرش راهنمایی می‌کند -نقطهٔ عطفی که اودیسئوس را یک قدم به خانه نزدیک‌تر می‌کند.",
+ rel:[{id:"odysseus",label:"نجات‌دهندهٔ او"},{id:"alcinous",label:"پدر"}]},
+
+{id:"alcinous", fac:"odyssey", status:"alive", icon:"👑", name:"آلکینوئوس", epithet:"پادشاه فایاسی‌ها",
+ wiki:"https://en.wikipedia.org/wiki/Alcinous",
+ tip:"میزبانی کرد که سرانجام کشتی‌ای برای رساندن اودیسئوس به ایتاکا فراهم کرد.",
+ desc:"آلکینوئوس پادشاه مهمان‌نواز جزیرهٔ فایاسی‌هاست. او اودیسئوس را در قصرش پذیرا می‌شود، اجازه می‌دهد ماجراهایش را برای همگان تعریف کند (که اساس روایت ادیسه است)، و در پایان کشتی و ملوانانی برای رساندن نهایی او به ایتاکا فراهم می‌کند.",
+ rel:[{id:"nausicaa",label:"پدر"},{id:"odysseus",label:"میزبان نهایی"}]},
+
+{id:"scylla_charybdis", fac:"odyssey", status:"immortal", icon:"🐙", name:"سیلا و خاریبدیس", epithet:"دو هیولای تنگهٔ مرگبار",
+ wiki:"https://en.wikipedia.org/wiki/Scylla_and_Charybdis",
+ tip:"اودیسئوس مجبور شد میان دو بلای محتوم یکی را انتخاب کند: هیولای سیلا یا گردابِ خاریبدیس.",
+ desc:"سیلا هیولایی شش‌سر است که در یک‌سوی تنگه‌ای باریک کمین کرده و خاریبدیس گردابی است که کشتی‌ها را کامل می‌بلعد. اودیسئوس -طبق راهنمایی سیرسه- ترجیح می‌دهد نزدیک سیلا برود و تنها چند ملوان را قربانی کند، تا خطر ازدست‌دادن کل کشتی در خاریبدیس.",
+ rel:[{id:"odysseus",label:"مجبور به گذر از میانشان"},{id:"circe",label:"دربارهٔ آن‌ها هشدار داد"},{id:"poseidon",label:"فرمانروای آبهایشان"}]},
+
+{id:"sirens", fac:"odyssey", status:"immortal", icon:"🎶", name:"سیرن‌ها", epithet:"پری‌های دریایی با آوازی مرگبار",
+ wiki:"https://en.wikipedia.org/wiki/Siren_(mythology)",
+ tip:"آوازشان چنان افسون‌کننده بود که ملوانان را به سوی صخره‌ها و مرگ می‌کشاند.",
+ desc:"سیرن‌ها موجوداتی نیمه‌پرنده‌اند که با آواز خود دریانوردان را به صخره‌ها می‌کشانند. اودیسئوس با گوش گرفتن گوش‌های خدمه با موم و بستن خودش به دکل کشتی، توانست آواز آن‌ها را بشنود بی‌آنکه هلاک شود -تنها انسانی که چنین کرد.",
+ rel:[{id:"odysseus",label:"شنوندهٔ زندهٔ آوازشان"},{id:"circe",label:"دربارهٔ آن‌ها هشدار داد"}]},
+
+{id:"argos", fac:"odyssey", status:"dead", icon:"🐕", name:"آرگوس", epithet:"سگ وفادار اودیسئوس",
+ wiki:"https://en.wikipedia.org/wiki/Argos_(dog)",
+ tip:"پس از ۲۰ سال، تنها موجودی بود که اودیسئوس مبدل را فوراً شناخت -و سپس در آرامش مرد.",
+ desc:"آرگوس سگی است که اودیسئوس پیش از رفتن به جنگ تربیتش کرده بود. بیست سال بعد، هنگامی‌که اودیسئوس در لباس گدا و ناشناس به ایتاکا بازمی‌گردد، آرگوسِ پیر و رهاشده روی زباله‌ها، تنها کسی است که فوراً او را می‌شناسد؛ دُمش را تکان می‌دهد و در همان لحظه جان می‌دهد -یکی از تکان‌دهنده‌ترین لحظات حماسه.",
+ rel:[{id:"odysseus",label:"او را شناخت"}]}
+];
+
+/* ================= STORYLINE DATA ================= */
+const STORY = {
+  iliad:{
+    label:"بخش یکم — ایلیاد: خشم آشیل و سقوط تروا",
+    intro:"از جشن عروسی‌ای که خدایان را به رقابت انداخت، تا سقوط بزرگ‌ترین شهر آسیای صغیر با نیرنگی چوبین.",
+    color:"var(--c-trojan)",
+    chapters:[
+      {t:"دنیای یونان باستان پیش از جنگ", x:"ماجرا در دوران برنز، حدود قرن دوازدهم پیش از میلاد، در یونان میکنایی می‌گذرد؛ دورانی از شهر-پادشاهی‌های مستحکم مثل میکنای، اسپارت و پیلوس که هر کدام پادشاه و ارتش خود را داشتند. این داستان‌ها قرن‌ها سینه‌به‌سینه توسط نقالان دوره‌گرد نقل می‌شدند تا سرانجام هومر، شاعر نابینای یونانی، حدود قرن هشتم پیش از میلاد آن‌ها را در دو حماسهٔ «ایلیاد» و «ادیسه» به شکل مکتوب درآورد. تروا (یا ایلیون) شهری ثروتمند در ساحل آناتولی (ترکیهٔ امروزی) بود که کنترل تنگه‌های تجاری را در دست داشت -یکی از دلایل واقعی و غیرِاسطوره‌ای رقابت یونانی‌ها با آن.", c:[]},
+      {t:"سیب طلایی و داوری پاریس", x:"در جشن عروسی پلئوس و تتیس، اریسِ ناخوانده سیبی با نوشتهٔ «برای زیباترین» میان مهمانان می‌اندازد. هرا، آتنا و آفرودیت بر سرش به رقابت می‌افتند و پاریسِ شاهزادهٔ تروا داور انتخاب می‌شود. آفرودیت با وعدهٔ عشق زیباترین زن جهان برنده می‌شود.", c:["eris","paris","hera","athena","aphrodite","thetis"]},
+      {t:"ربودن هلن و گردآوری سپاه", x:"پاریس به اسپارت سفر می‌کند و با افسون آفرودیت، هلن -همسر منلائوس- را با خود به تروا می‌برد. منلائوس و برادرش آگاممنون سپاهی عظیم از سراسر یونان گرد می‌آورند تا انتقام بگیرند.", c:["paris","helen","menelaus","agamemnon"]},
+      {t:"قربانی در اولیس", x:"ناوگان یونان در بندر اولیس گیر می‌افتد چون بادی نمی‌وزد. کالخاسِ پیشگو اعلام می‌کند آرتمیس خشمگین است و باید ایفی‌گنیا، دختر آگاممنون، قربانی شود تا بادها بازگردند.", c:["calchas","artemis","agamemnon"]},
+      {t:"نه سال محاصره", x:"جنگ تروا نه سال بدون نتیجهٔ قطعی ادامه می‌یابد. یونانی‌ها شهرهای اطراف را غارت می‌کنند؛ در یکی از این غارت‌ها بریسئیس به‌عنوان غنیمت نصیب آشیل می‌شود.", c:["achilles","briseis","hector"]},
+      {t:"خشم آشیل", x:"در سال دهم، آگاممنون مجبور می‌شود کنیزش را به پدرش بازگرداند و به‌جای آن بریسئیس را از آشیل می‌گیرد. آشیل تحقیرشده از جنگیدن کناره می‌گیرد و مادرش تتیس از زئوس می‌خواهد یونانی‌ها را در غیاب او شکست دهد.", c:["agamemnon","achilles","briseis","thetis","zeus"]},
+      {t:"پیشروی هکتور", x:"بدون آشیل، سپاه یونان رو به شکست می‌رود. هکتور یونانی‌ها را تا پشت دیوارهای کشتی‌هایشان عقب می‌راند و نزدیک است ناوگان را به آتش بکشد.", c:["hector","agamemnon"]},
+      {t:"مرگ پاتروکلوس", x:"پاتروکلوس، دوست نزدیک آشیل، برای بازگرداندن روحیهٔ یونانی‌ها زره او را می‌پوشد و به میدان می‌رود. او سارپدون را می‌کشد، اما سرانجام به دست هکتور کشته می‌شود.", c:["patroclus","achilles","hector","sarpedon"]},
+      {t:"بازگشت آشیل و مرگ هکتور", x:"هفائستوس به درخواست تتیس زرهی نو برای آشیل می‌سازد. آشیل خشمگین به میدان بازمی‌گردد، دشمنان بسیاری را می‌کشد و سرانجام در نبردی تن‌به‌تن هکتور را می‌کشد و جسدش را پشت ارابه می‌کشد.", c:["achilles","hephaestus","hector"]},
+      {t:"پریام نزد آشیل", x:"پریامِ پیر شبانه و به‌تنهایی، با راهنمایی مخفیانهٔ هرمس، به چادر آشیل می‌رود، دستان قاتل پسرش را می‌بوسد و التماس می‌کند جسد هکتور را برای تدفین بازگرداند. ایلیاد رسمی هومر همین‌جا به پایان می‌رسد.", c:["priam","hermes","achilles","hector"]},
+      {t:"مرگ آشیل", x:"طبق روایات پس از ایلیاد، پاریس -با هدایت آپولون- تیری به تنها نقطه‌ضعف آشیل، پاشنهٔ پایش، می‌زند و بزرگ‌ترین جنگجوی یونان را می‌کشد.", c:["paris","apollo","achilles"]},
+      {t:"نزاع بر سر زره و مرگ آژاکس", x:"زرهٔ افسانه‌ای آشیل باید به یکی از قهرمانان برسد. اودیسئوس با نطقی زیرکانه آن را از آژاکس بزرگ می‌رباید؛ آژاکس از شرم دیوانه می‌شود و بر شمشیر خود می‌افتد.", c:["achilles","odysseus","ajax_great"]},
+      {t:"نیرنگ اسب چوبی", x:"اودیسئوس نقشهٔ اسبی غول‌پیکر چوبی را طرح می‌ریزد. بهترین جنگجویان یونان درون آن پنهان می‌شوند و بقیهٔ سپاه وانمود می‌کند رفته است. تروآیی‌ها، با وجود هشدار کاساندرا، اسب را به‌عنوان هدیه به درون شهر می‌برند.", c:["odysseus","cassandra","priam"]},
+      {t:"سقوط تروا", x:"شب هنگام، یونانی‌ها از شکم اسب بیرون می‌آیند و دروازه‌ها را می‌گشایند. تروا به آتش کشیده می‌شود؛ پریام کشته می‌شود، کاساندرا و آندروماک به اسارت می‌روند و آینیاس از میان آتش می‌گریزد.", c:["priam","cassandra","andromache","aeneas","ajax_lesser"]}
+    ]
+  },
+  odyssey:{
+    label:"بخش دوم — ادیسه: ده سال بازگشت اودیسئوس",
+    intro:"از دروازه‌های سوختهٔ تروا تا کرانهٔ ایتاکا؛ سفری با هیولا، جادو، وسوسه و اشتیاق برای رسیدن به خانه.",
+    color:"var(--c-odyssey)",
+    chapters:[
+      {t:"عزیمت و کیکونیان", x:"اودیسئوس با دوازده کشتی از تروا به راه می‌افتد. نخستین توقف، سرزمین کیکونیان است که آن‌ها را غارت می‌کند؛ اما تأخیر بیش از حد باعث ضدحمله و تلفات می‌شود.", c:["odysseus"]},
+      {t:"سرزمین لوتوس‌خواران", x:"طوفانی کشتی‌ها را به سرزمین لوتوس‌خواران می‌راند. هرکس میوهٔ لوتوس بخورد همه‌چیز -از جمله میل به بازگشت خانه- را فراموش می‌کند؛ اودیسئوس به‌زور یارانش را به کشتی بازمی‌گرداند.", c:["odysseus"]},
+      {t:"غار پولیفموس", x:"در جزیرهٔ سیکلوپس‌ها، پولیفموسِ یک‌چشم چند ملوان را می‌خورد. اودیسئوس با نیرنگ «نامم هیچ‌کس است» او را مست و کور می‌کند، اما هنگام فرار با غرور نام واقعی‌اش را فریاد می‌زند -پولیفموس از پدرش پوزئیدون نفرین بازگشت سخت را طلب می‌کند.", c:["odysseus","polyphemus","poseidon"]},
+      {t:"کیسهٔ بادِ آیولوس", x:"آیولوس، فرمانروای بادها، کیسه‌ای پر از بادهای مخالف به اودیسئوس می‌دهد. وقتی ایتاکا در چشم‌رس است، ملوانان کنجکاو کیسه را باز می‌کنند به گمان طلا بودنش؛ طوفانی آنان را دوباره به دوردست پرتاب می‌کند.", c:["odysseus","aeolus"]},
+      {t:"لسترگونیان‌های آدم‌خوار", x:"غول‌های آدم‌خوار لسترگونیا با پرتاب تخته‌سنگ اکثر ناوگان اودیسئوس را نابود می‌کنند؛ تنها یک کشتی جان سالم به در می‌برد.", c:["odysseus"]},
+      {t:"جادوی سیرسه", x:"سیرسه، جادوگر جزیرهٔ آیایا، یاران اودیسئوس را به خوک تبدیل می‌کند. اودیسئوس با گیاه «مولی» -هدیهٔ هرمس- در برابر جادویش مصون می‌ماند و او را وادار می‌کند دوستانش را انسان کند. آن‌ها یک سال آنجا می‌مانند.", c:["odysseus","circe","hermes"]},
+      {t:"سفر به دنیای مردگان", x:"به راهنمایی سیرسه، اودیسئوس به دروازهٔ هادس می‌رود و با روح تیرسیاس دربارهٔ راه بازگشت و خطر گاوهای خورشید مشورت می‌کند؛ ارواح مادرش و قهرمانان مرده مانند آشیل و آگاممنون را نیز می‌بیند.", c:["odysseus","tiresias","circe","achilles","agamemnon"]},
+      {t:"آواز سیرن‌ها", x:"اودیسئوس با موم‌گذاشتن در گوش خدمه و بستن خودش به دکل، تنها انسانی می‌شود که آواز مرگبار سیرن‌ها را می‌شنود بی‌آنکه هلاک شود.", c:["odysseus","sirens"]},
+      {t:"سیلا و خاریبدیس", x:"در تنگه‌ای باریک، اودیسئوس باید میان هیولای شش‌سرِ سیلا و گردابِ خاریبدیس یکی را انتخاب کند؛ او نزدیک سیلا می‌رود و چند ملوان را فدا می‌کند تا کل کشتی را از غرق شدن نجات دهد.", c:["odysseus","scylla_charybdis"]},
+      {t:"گاوهای مقدس خورشید", x:"با وجود هشدارهای مکرر، ملوانان گرسنه از گاوهای مقدس هلیوس (خدای خورشید) می‌خورند. زئوس در انتقام، کشتی را با صاعقه نابود می‌کند؛ تنها اودیسئوس زنده می‌ماند.", c:["odysseus"]},
+      {t:"هفت سال نزد کالیپسو", x:"اودیسئوسِ کشتی‌شکسته به جزیرهٔ اوگوگیا می‌رسد، جایی که کالیپسو عاشقش می‌شود و هفت سال نگهش می‌دارد، حتی وعدهٔ جاودانگی می‌دهد. سرانجام به فرمان زئوس -که هرمس ابلاغ می‌کند- آزادش می‌کند.", c:["odysseus","calypso","hermes","zeus"]},
+      {t:"سرزمین فایاسی‌ها", x:"طوفان پوزئیدون کلک اودیسئوس را در هم می‌شکند؛ نائوسیکای شاهدخت او را در ساحل می‌یابد و به قصر پدرش آلکینوئوس می‌برد. آنجا اودیسئوس ماجراهایش را برای همگان تعریف می‌کند.", c:["odysseus","nausicaa","alcinous"]},
+      {t:"بازگشت به ایتاکا", x:"فایاسی‌ها با کشتی خودشان، اودیسئوسِ در خواب را به ایتاکا می‌رسانند. آتنا او را به شکل گدایی پیر درمی‌آورد تا بی‌خطر اوضاع خانه‌اش را بررسی کند.", c:["odysseus","athena","alcinous"]},
+      {t:"دیدار مخفیانه با یاران", x:"اودیسئوسِ مبدل نزد چوپان وفادارش یومائوس پناه می‌گیرد و با پسرش تلماخوس -که تازه از سفر جست‌وجوی خبر پدر بازگشته- خود را آشکار می‌کند. سگ پیرش آرگوس تنها کسی است که او را فوراً می‌شناسد و در همان لحظه جان می‌دهد.", c:["odysseus","eumaeus","telemachus","argos","eurycleia"]},
+      {t:"آزمون کمان", x:"پنه‌لوپه، پس از بیست سال سردواندن خواستگاران با حیلهٔ بافتن پارچه، مسابقه‌ای ترتیب می‌دهد: هرکس بتواند کمان اودیسئوس را زه کند و تیر را از میان دوازده تبر عبور دهد، همسرش می‌شود. هیچ‌کدام از خواستگاران موفق نمی‌شوند.", c:["penelope","antinous","eurymachus"]},
+      {t:"کشتار خواستگاران", x:"اودیسئوسِ گدانما کمان را برمی‌دارد، به‌راحتی زه می‌کند و نخستین تیر را به گلوی آنتینوس می‌زند. با کمک تلماخوس و یومائوس، تمام خواستگاران را در تالار می‌کشد.", c:["odysseus","antinous","eurymachus","telemachus","eumaeus"]},
+      {t:"وصال با پنه‌لوپه و لائرتس", x:"پنه‌لوپه با آزمونی هوشمندانه دربارهٔ تخت زناشویی‌شان -که از تنهٔ زیتونی ثابت ساخته شده- هویت واقعی اودیسئوس را تأیید می‌کند. او سپس نزد پدر پیرش لائرتس می‌رود؛ آتنا آرامش نهایی را میان خانواده‌های خواستگاران کشته‌شده برقرار می‌کند.", c:["penelope","odysseus","laertes","athena"]}
+    ]
+  },
+  epilogue:{
+    label:"پس‌گفتار — از هومر تا پردهٔ سینما",
+    intro:"دو هزار و هشتصد سال سفر یک داستان: از نقالی‌های شفاهی یونان باستان تا اقتباس سینمایی کریستوفر نولان.",
+    color:"var(--c-god)",
+    chapters:[
+      {t:"میراث حماسه‌ها در طول تاریخ", x:"ایلیاد و ادیسه ستون فقرات ادبیات غرب شدند: از تراژدی‌های یونان باستان و «آئنیید» ویرژیل گرفته تا دانته، شکسپیر و رمان «یولیسز» جیمز جویس، همه به این دو حماسه ارجاع داده‌اند. مضامینی مثل خشمِ قهرمانانه، اشتیاق بازگشت به خانه، و بهای جنگ، هزاران سال است که تکرار می‌شوند.", c:[]},
+      {t:"ادیسهٔ نولان (۲۰۲۶)", x:"فیلم «ادیسه» ساختهٔ کریستوفر نولان بازخوانی سینمایی همین سفر ده‌سالهٔ اودیسئوس به خانه است. آشنایی با شبکهٔ شخصیت‌ها، کینه‌های الهی (به‌ویژه خشم پوزئیدون) و آزمون‌های راه -از سیرن‌ها تا کالیپسو- به تماشاگر کمک می‌کند لایه‌های اسطوره‌ای فیلم را عمیق‌تر دنبال کند.", c:["odysseus","poseidon","penelope"]}
+    ]
+  }
+};
+
+/* ================= RENDER: GALLERY ================= */
+const content = document.getElementById('content');
+const byId = Object.fromEntries(DATA.map(d=>[d.id,d]));
+
+/* ---------- shared state (in-memory only, resets on reload) ---------- */
+let FAVORITES = new Set();
+let RECENT = [];
+let VIEWED = new Set();
+let REACTIONS = {};
+let COMPARE = [];
+let currentFilter = "all";
+let currentFate = "all";
+let sortMode = "default"; // "default" | "alpha"
+let fontStep = 0;
+const FAMILY_WORDS = ["پدر","مادر","همسر","برادر","خواهر","پسر","دختر","دایه","معشوق","نامزد"];
+
+function toPersianDigits(n){
+  const map = {'0':'۰','1':'۱','2':'۲','3':'۳','4':'۴','5':'۵','6':'۶','7':'۷','8':'۸','9':'۹'};
+  return String(n).replace(/[0-9]/g, d=>map[d]);
+}
+function highlight(text, q){
+  if(!q) return text;
+  try{
+    const re = new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+    return text.replace(re, '<mark>$1</mark>');
+  }catch(e){ return text; }
+}
+function showToast(msg, ms=2600){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove('show'), ms);
+}
+
+function medalStyle(item){
+  const f = FAC[item.fac];
+  return `--medalbg:${f.dim}; --edge:${f.color}; --glow:${f.color}33;`;
+}
+
+function cardHTML(item, q, idx){
+  const f = FAC[item.fac];
+  const fate = FATE[item.status];
+  const relCount = (item.rel||[]).length;
+  const isFav = FAVORITES.has(item.id);
+  return `<div class="card stagger" data-id="${item.id}" style="${medalStyle(item)} animation-delay:${(idx%12)*0.035}s">
+      <div class="badge" style="background:${f.color}22; color:${f.color}; border:1px solid ${f.color}55;">${f.label}</div>
+      <div class="fatebadge" title="${fate.label}">${fate.icon}</div>
+      <div class="fav-star ${isFav?'faved':''}" data-fav="${item.id}" title="افزودن به علاقه‌مندی‌ها">${isFav?'⭐':'☆'}</div>
+      <div class="medal">${item.icon}</div>
+      <h3>${highlight(item.name, q)}</h3>
+      <div class="epithet">${highlight(item.epithet, q)}</div>
+      <div class="rel-count">${toPersianDigits(relCount)} رابطه</div>
+      <a class="wikilink" href="${item.wiki}" target="_blank" rel="noopener" onclick="event.stopPropagation()">📖 ویکی‌پدیا</a>
+    </div>`;
+}
+
+function renderGrid(list, q){
+  if(!list.length){
+    content.innerHTML = `<p style="text-align:center; color:var(--ink-faint); padding:60px 0;">شخصیتی با این مشخصات پیدا نشد.</p>`;
+    return;
+  }
+  let counter = 0;
+  if(sortMode === "alpha"){
+    const sorted = [...list].sort((a,b)=>a.name.localeCompare(b.name,'fa'));
+    content.innerHTML = `<div class="grid">${sorted.map(i=>cardHTML(i,q,counter++)).join("")}</div>`;
+    return;
+  }
+  const groups = {god:[], trojan:[], greek:[], odyssey:[]};
+  list.forEach(i=>groups[i.fac].push(i));
+  const titles = {god:"خدایان المپ", trojan:"جبههٔ تروا", greek:"جبههٔ آخائیان (یونانی‌ها)", odyssey:"شخصیت‌های سفر ادیسه"};
+  let html = "";
+  Object.keys(groups).forEach(k=>{
+    if(!groups[k].length) return;
+    html += `<div class="section-label"><b>${titles[k]}</b><span class="line" style="color:${FAC[k].color}"></span><span>${toPersianDigits(groups[k].length)} شخصیت</span></div>`;
+    html += `<div class="grid">${groups[k].map(i=>cardHTML(i,q,counter++)).join("")}</div>`;
+  });
+  content.innerHTML = html;
+}
+renderGrid(DATA);
+
+/* ---------- stats bar ---------- */
+(function renderStats(){
+  const el = document.getElementById('statsBar');
+  const counts = {god:0,trojan:0,greek:0,odyssey:0};
+  DATA.forEach(d=>counts[d.fac]++);
+  const items = [
+    {n:DATA.length, label:"کل شخصیت‌ها", color:"var(--ink)"},
+    {n:counts.god, label:"خدایان المپ", color:"var(--c-god)"},
+    {n:counts.trojan, label:"تروآیی‌ها", color:"var(--c-trojan)"},
+    {n:counts.greek, label:"آخائیان", color:"var(--c-greek)"},
+    {n:counts.odyssey, label:"سفر ادیسه", color:"var(--c-odyssey)"}
+  ];
+  el.innerHTML = items.map(i=>`<div class="stat"><b style="color:${i.color}">${toPersianDigits(i.n)}</b><span>${i.label}</span></div>`).join("");
+  const gc = document.getElementById('graphCount');
+  if(gc) gc.textContent = toPersianDigits(DATA.length) + " شخصیت";
+})();
+
+/* ---------- filtering ---------- */
+function applyFilters(){
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  let list = DATA.filter(d=>{
+    if(currentFilter==="fav") return FAVORITES.has(d.id);
+    return currentFilter==="all" || d.fac===currentFilter;
+  });
+  if(currentFate !== "all") list = list.filter(d=>d.status===currentFate);
+  if(q){
+    list = list.filter(d =>
+      d.name.toLowerCase().includes(q) ||
+      d.epithet.toLowerCase().includes(q) ||
+      d.desc.toLowerCase().includes(q)
+    );
+  }
+  renderGrid(list, q);
+}
+document.getElementById('tabs').addEventListener('click', e=>{
+  const tab = e.target.closest('.tab');
+  if(!tab) return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  currentFilter = tab.dataset.f;
+  applyFilters();
+});
+document.getElementById('fateTabs').addEventListener('click', e=>{
+  const chip = e.target.closest('.fate-chip');
+  if(!chip) return;
+  document.querySelectorAll('.fate-chip').forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+  currentFate = chip.dataset.fate;
+  applyFilters();
+});
+document.getElementById('search').addEventListener('input', applyFilters);
+document.getElementById('diceBtn').addEventListener('click', ()=>{
+  const pick = DATA[Math.floor(Math.random()*DATA.length)];
+  openModal(pick.id);
+});
+
+/* ---------- favorite star (event delegation) ---------- */
+content.addEventListener('click', e=>{
+  const star = e.target.closest('.fav-star');
+  if(star){
+    e.stopPropagation();
+    const id = star.dataset.fav;
+    if(FAVORITES.has(id)){ FAVORITES.delete(id); } else { FAVORITES.add(id); showToast('⭐ به علاقه‌مندی‌ها اضافه شد: '+byId[id].name); }
+    applyFilters();
+    return;
+  }
+  const card = e.target.closest('.card');
+  if(card) openModal(card.dataset.id);
+});
+
+/* ---------- recently viewed ---------- */
+function renderRecent(){
+  const el = document.getElementById('recentBar');
+  if(!RECENT.length){ el.innerHTML=''; return; }
+  el.innerHTML = `<span style="color:var(--ink-faint); font-size:11.5px; align-self:center;">به‌تازگی دیده‌اید:</span>` + RECENT.map(id=>{
+    const c = byId[id]; if(!c) return '';
+    return `<div class="recent-chip" data-id="${id}"><span>${c.icon}</span><span>${c.name}</span></div>`;
+  }).join("");
+}
+document.getElementById('recentBar').addEventListener('click', e=>{
+  const chip = e.target.closest('.recent-chip');
+  if(chip) openModal(chip.dataset.id);
+});
+
+/* ---------- toolbar ---------- */
+document.getElementById('fontMinus').addEventListener('click', ()=>{
+  fontStep = Math.max(fontStep-1, -2);
+  document.documentElement.style.setProperty('--font-scale', (1 + fontStep*0.08).toFixed(2));
+});
+document.getElementById('fontPlus').addEventListener('click', ()=>{
+  fontStep = Math.min(fontStep+1, 3);
+  document.documentElement.style.setProperty('--font-scale', (1 + fontStep*0.08).toFixed(2));
+});
+document.getElementById('motionToggle').addEventListener('click', function(){
+  document.body.classList.toggle('reduced-motion');
+  this.classList.toggle('active');
+});
+document.getElementById('sortToggle').addEventListener('click', function(){
+  sortMode = sortMode==="default" ? "alpha" : "default";
+  this.classList.toggle('active');
+  this.textContent = sortMode==="alpha" ? "🔤 حالت پیش‌فرض" : "🔤 مرتب‌سازی الفبایی";
+  applyFilters();
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  currentFilter="all"; currentFate="all"; sortMode="default";
+  document.getElementById('search').value="";
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelector('.tab[data-f="all"]').classList.add('active');
+  document.querySelectorAll('.fate-chip').forEach(c=>c.classList.remove('active'));
+  document.querySelector('.fate-chip[data-fate="all"]').classList.add('active');
+  const sb = document.getElementById('sortToggle');
+  sb.classList.remove('active'); sb.textContent = "🔤 مرتب‌سازی الفبایی";
+  applyFilters();
+  showToast('♻️ فیلترها بازنشانی شد');
+});
+document.getElementById('helpBtn').addEventListener('click', ()=> shortcutsBg.classList.add('open'));
+
+/* ---------- theme picker ---------- */
+document.getElementById('themePicker').addEventListener('click', e=>{
+  const sw = e.target.closest('.theme-swatch');
+  if(!sw) return;
+  document.body.dataset.theme = sw.dataset.theme;
+  document.querySelectorAll('.theme-swatch').forEach(s=>s.classList.remove('active'));
+  sw.classList.add('active');
+});
+
+/* ---------- onboarding banner ---------- */
+document.getElementById('onboardClose').addEventListener('click', ()=>{
+  document.getElementById('onboardBanner').style.display='none';
+});
+
+/* ---------- scroll to top ---------- */
+const scrollTopBtn = document.getElementById('scrollTop');
+window.addEventListener('scroll', ()=>{
+  scrollTopBtn.classList.toggle('show', window.scrollY>400);
+});
+scrollTopBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ---------- parallax hero title ---------- */
+const heroTitle = document.querySelector('h1.title');
+window.addEventListener('mousemove', e=>{
+  if(!heroTitle) return;
+  const dx = (e.clientX / window.innerWidth - 0.5) * 8;
+  const dy = (e.clientY / window.innerHeight - 0.5) * 8;
+  heroTitle.style.transform = `translate(${dx}px, ${dy}px)`;
+});
+
+/* ---------- view toggle (3 views) ---------- */
+let graphBuilt = false;
+document.getElementById('viewToggle').addEventListener('click', e=>{
+  const btn = e.target.closest('.vt-btn');
+  if(!btn) return;
+  document.querySelectorAll('.vt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const v = btn.dataset.view;
+  document.getElementById('galleryView').style.display = v==="gallery" ? "block" : "none";
+  document.getElementById('timelineView').style.display = v==="timeline" ? "block" : "none";
+  document.getElementById('graphView').style.display = v==="graph" ? "block" : "none";
+  if(v==="graph" && !graphBuilt){ buildGraph(); graphBuilt = true; }
+});
+
+/* ---------- tooltip ---------- */
+const tooltip = document.getElementById('tooltip');
+document.addEventListener('mousemove', e=>{
+  if(tooltip.classList.contains('show')){
+    let x = e.clientX + 18, y = e.clientY + 18;
+    if(x + 270 > window.innerWidth) x = e.clientX - 270;
+    if(y + 120 > window.innerHeight) y = e.clientY - 120;
+    tooltip.style.left = x+"px";
+    tooltip.style.top = y+"px";
+  }
+});
+content.addEventListener('mouseover', e=>{
+  const card = e.target.closest('.card');
+  if(!card) return;
+  const item = byId[card.dataset.id];
+  tooltip.innerHTML = `<b>${item.name}</b> — ${item.epithet}<br>${item.tip}`;
+  tooltip.classList.add('show');
+});
+content.addEventListener('mouseout', e=>{
+  if(e.target.closest('.card')) tooltip.classList.remove('show');
+});
+
+/* ================= MODAL ================= */
+const modalBg = document.getElementById('modalBox').parentElement;
+const modalContent = document.getElementById('modalContent');
+const shortcutsBg = document.getElementById('shortcutsBg');
+const cmpBg = document.getElementById('cmpBg');
+let currentId = null;
+let familyOnly = false;
+
+function relSVG(item, famOnly){
+  let rels = (item.rel||[]).filter(r=>byId[r.id]);
+  if(famOnly) rels = rels.filter(r=>FAMILY_WORDS.some(w=>r.label.includes(w)));
+  const n = rels.length;
+  if(n===0) return '<p style="text-align:center; color:var(--ink-faint); font-size:12.5px;">رابطه‌ای در این دسته یافت نشد.</p>';
+  const cx=140, cy=140, radius=100, centerR=32, nodeR=21;
+  let lines='', nodes='';
+  rels.forEach((r,i)=>{
+    const angle = (2*Math.PI*i/n) - Math.PI/2;
+    const x = cx + radius*Math.cos(angle);
+    const y = cy + radius*Math.sin(angle);
+    const target = byId[r.id];
+    const color = FAC[target.fac].color;
+    lines += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${color}" stroke-width="1.5" opacity="0.45"/>`;
+    nodes += `<g class="rel-node" data-id="${r.id}">
+        <title>${target.name} — ${r.label}</title>
+        <circle cx="${x}" cy="${y}" r="${nodeR}" fill="#12141f" stroke="${color}" stroke-width="2"/>
+        <text x="${x}" y="${y+6}" text-anchor="middle" font-size="17">${target.icon}</text>
+      </g>`;
+  });
+  return `<svg viewBox="0 0 280 280" style="width:100%; max-width:300px; margin:14px auto 0; display:block;">
+      ${lines}
+      <circle cx="${cx}" cy="${cy}" r="${centerR}" fill="${FAC[item.fac].dim}" stroke="${FAC[item.fac].color}" stroke-width="2.5"/>
+      <text x="${cx}" y="${cy+7}" text-anchor="middle" font-size="22">${item.icon}</text>
+      ${nodes}
+    </svg>`;
+}
+
+function relListHTML(item, famOnly){
+  let rels = item.rel||[];
+  if(famOnly) rels = rels.filter(r=>FAMILY_WORDS.some(w=>r.label.includes(w)));
+  return rels.map(r=>{
+    const target = byId[r.id];
+    if(!target) return "";
+    return `<div class="rel-chip" data-id="${r.id}">
+        <span>${target.icon}</span>
+        <span class="rname">${target.name}</span>
+        <span class="rlabel">· ${r.label}</span>
+      </div>`;
+  }).join("");
+}
+
+function refreshRelArea(item){
+  const area = document.getElementById('relArea');
+  if(!area) return;
+  area.innerHTML = `${relSVG(item, familyOnly)}<div class="rel-list" style="margin-top:14px;">${relListHTML(item, familyOnly)}</div>`;
+}
+
+function openModal(id){
+  const item = byId[id];
+  currentId = id;
+  familyOnly = false;
+  const f = FAC[item.fac];
+  const fate = FATE[item.status];
+  const idx = DATA.findIndex(d=>d.id===id);
+  const hasRel = (item.rel||[]).length>0;
+  const isFav = FAVORITES.has(id);
+  const inCompare = COMPARE.includes(id);
+  const reactCount = REACTIONS[id]||0;
+
+  modalContent.innerHTML = `
+    <div class="modal-head">
+      <div class="modal-medal" style="${medalStyle(item)}">${item.icon}</div>
+      <div>
+        <h2>${item.name}</h2>
+        <div class="epithet-lg">${item.epithet}</div>
+        <div class="badge-row">
+          <div class="fac-badge" style="background:${f.color}22; color:${f.color}; border:1px solid ${f.color}55;">${f.label}</div>
+          <div class="fate-badge-lg">${fate.icon} ${fate.label}</div>
+          <a class="wiki-btn" href="${item.wiki}" target="_blank" rel="noopener">📖 ویکی‌پدیا ↗</a>
+          <span class="pos-indicator">${toPersianDigits(idx+1)} از ${toPersianDigits(DATA.length)}</span>
+        </div>
+      </div>
+    </div>
+    ${item.power ? `<div class="kv-row"><span class="k">قدرت / دامنه:</span><span>${item.power}</span></div>` : ""}
+    <div class="modal-body" id="modalDesc">${item.desc}</div>
+    ${hasRel ? `<div class="rel-title"><span>شبکهٔ روابط</span><span class="line"></span><span class="fam-toggle" id="famToggle">فقط خانواده</span></div><div id="relArea">${relSVG(item,false)}<div class="rel-list" style="margin-top:14px;">${relListHTML(item,false)}</div></div>` : ""}
+    <div class="modal-actions">
+      <div class="ma-btn ${isFav?'on':''}" id="maFav">${isFav?'⭐ در علاقه‌مندی‌ها':'☆ افزودن به علاقه‌مندی‌ها'}</div>
+      <div class="ma-btn" id="maHeart">❤️ <span id="heartCount">${toPersianDigits(reactCount)}</span></div>
+      <div class="ma-btn ${inCompare?'on':''}" id="maCompare">${inCompare?'🆚 حذف از مقایسه':'🆚 افزودن به مقایسه'}</div>
+      <div class="ma-btn" id="maCopy">📋 کپی خلاصه</div>
+      <div class="ma-btn" id="maDownload">💾 دانلود متن</div>
+      <div class="ma-btn" id="maShare">🔗 اشتراک‌گذاری</div>
+      <div class="ma-btn" id="maPrint">🖨️ چاپ</div>
+      <div class="ma-btn" id="maRandom">🎲 شخصیت شانسی</div>
+    </div>
+  `;
+  modalBg.classList.add('open');
+
+  // recently viewed
+  RECENT = [id, ...RECENT.filter(x=>x!==id)].slice(0,6);
+  renderRecent();
+
+  // viewed / achievement
+  VIEWED.add(id);
+  if(VIEWED.size === DATA.length){
+    showToast('🏆 شگفت‌انگیز! شما همهٔ '+toPersianDigits(DATA.length)+' شخصیت را کشف کردید!', 4000);
+  }
+
+  // url deep-link
+  try{ history.replaceState(null, '', '#'+id); }catch(e){}
+
+  // wire up modal action buttons
+  document.getElementById('famToggle')?.addEventListener('click', function(){
+    familyOnly = !familyOnly;
+    this.classList.toggle('active', familyOnly);
+    refreshRelArea(item);
+  });
+  document.getElementById('maFav').addEventListener('click', function(){
+    if(FAVORITES.has(id)){ FAVORITES.delete(id); this.classList.remove('on'); this.textContent='☆ افزودن به علاقه‌مندی‌ها'; }
+    else { FAVORITES.add(id); this.classList.add('on'); this.textContent='⭐ در علاقه‌مندی‌ها'; showToast('⭐ به علاقه‌مندی‌ها اضافه شد'); }
+    applyFilters();
+  });
+  document.getElementById('maHeart').addEventListener('click', function(){
+    REACTIONS[id] = (REACTIONS[id]||0) + 1;
+    document.getElementById('heartCount').textContent = toPersianDigits(REACTIONS[id]);
+  });
+  document.getElementById('maCompare').addEventListener('click', function(){
+    toggleCompare(id, this);
+  });
+  document.getElementById('maCopy').addEventListener('click', ()=>{
+    const text = `${item.name} — ${item.epithet}\n\n${item.desc}`;
+    navigator.clipboard?.writeText(text).then(()=>showToast('📋 خلاصه کپی شد')).catch(()=>showToast('کپی ناموفق بود'));
+  });
+  document.getElementById('maDownload').addEventListener('click', ()=>{
+    const text = `${item.name} — ${item.epithet}\n\n${item.desc}\n\nمنبع: ${item.wiki}`;
+    const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = item.id + '.txt';
+    a.click();
+  });
+  document.getElementById('maShare').addEventListener('click', ()=>{
+    const shareData = { title:item.name, text:item.name+' — '+item.epithet, url:item.wiki };
+    if(navigator.share){ navigator.share(shareData).catch(()=>{}); }
+    else { navigator.clipboard?.writeText(shareData.text+' | '+shareData.url); showToast('🔗 لینک در کلیپ‌بورد کپی شد'); }
+  });
+  document.getElementById('maPrint').addEventListener('click', ()=> window.print());
+  document.getElementById('maRandom').addEventListener('click', ()=>{
+    const pick = DATA[Math.floor(Math.random()*DATA.length)];
+    openModal(pick.id);
+  });
+}
+
+function navigate(step){
+  const idx = DATA.findIndex(d=>d.id===currentId);
+  const next = (idx + step + DATA.length) % DATA.length;
+  openModal(DATA[next].id);
+}
+
+/* ---------- compare mode ---------- */
+function renderCompareTray(){
+  const tray = document.getElementById('compareTray');
+  const slots = document.getElementById('cmpSlots');
+  if(!COMPARE.length){ tray.classList.remove('show'); return; }
+  tray.classList.add('show');
+  slots.innerHTML = COMPARE.map(id=>{
+    const c = byId[id];
+    return `<div class="cmp-slot"><span>${c.icon}</span><span>${c.name}</span><span class="x" data-remove="${id}">✕</span></div>`;
+  }).join("");
+}
+function toggleCompare(id, btn){
+  const i = COMPARE.indexOf(id);
+  if(i>-1){ COMPARE.splice(i,1); if(btn){btn.classList.remove('on'); btn.textContent='🆚 افزودن به مقایسه';} }
+  else {
+    if(COMPARE.length>=2){ showToast('حداکثر دو شخصیت برای مقایسه انتخاب کنید (اول یکی را حذف کنید)'); return; }
+    COMPARE.push(id);
+    if(btn){btn.classList.add('on'); btn.textContent='🆚 حذف از مقایسه';}
+  }
+  renderCompareTray();
+}
+document.getElementById('cmpSlots').addEventListener('click', e=>{
+  const x = e.target.closest('[data-remove]');
+  if(x){ const id = x.dataset.remove; COMPARE = COMPARE.filter(c=>c!==id); renderCompareTray(); }
+});
+document.getElementById('cmpGo').addEventListener('click', ()=>{
+  if(COMPARE.length<2){ showToast('لطفاً دو شخصیت انتخاب کنید'); return; }
+  const [a,b] = COMPARE.map(id=>byId[id]);
+  const box = c => `<div class="cmp-box">
+      <div class="modal-medal" style="${medalStyle(c)}; margin:0 auto;">${c.icon}</div>
+      <h4 style="text-align:center;">${c.name}</h4>
+      <p style="text-align:center; color:var(--ink-faint); font-size:12.5px;">${c.epithet}</p>
+      <div class="kv-row"><span class="k">جبهه:</span><span>${FAC[c.fac].label}</span></div>
+      <div class="kv-row"><span class="k">سرنوشت:</span><span>${FATE[c.status].icon} ${FATE[c.status].label}</span></div>
+      ${c.power ? `<div class="kv-row"><span class="k">قدرت:</span><span>${c.power}</span></div>` : ""}
+      <p style="font-size:13px; line-height:1.9; color:var(--ink-dim);">${c.desc}</p>
+    </div>`;
+  document.getElementById('cmpWrap').innerHTML = box(a) + box(b);
+  cmpBg.classList.add('open');
+});
+document.getElementById('cmpClose').addEventListener('click', ()=>cmpBg.classList.remove('open'));
+cmpBg.addEventListener('click', e=>{ if(e.target===cmpBg) cmpBg.classList.remove('open'); });
+
+/* ---------- shortcuts modal ---------- */
+document.getElementById('shortcutsClose').addEventListener('click', ()=>shortcutsBg.classList.remove('open'));
+shortcutsBg.addEventListener('click', e=>{ if(e.target===shortcutsBg) shortcutsBg.classList.remove('open'); });
+
+content.addEventListener('click', e=>{
+  const card = e.target.closest('.card');
+  if(card) openModal(card.dataset.id);
+});
+modalContent.addEventListener('click', e=>{
+  const chip = e.target.closest('.rel-chip');
+  const node = e.target.closest('.rel-node');
+  if(chip) openModal(chip.dataset.id);
+  if(node) openModal(node.dataset.id);
+});
+document.getElementById('modalClose').addEventListener('click', ()=>modalBg.classList.remove('open'));
+document.getElementById('navPrev').addEventListener('click', ()=>navigate(-1));
+document.getElementById('navNext').addEventListener('click', ()=>navigate(1));
+modalBg.addEventListener('click', e=>{ if(e.target===modalBg) modalBg.classList.remove('open'); });
+
+/* ---------- keyboard shortcuts (global + modal) ---------- */
+document.addEventListener('keydown', e=>{
+  const typing = e.target.tagName==='INPUT' || e.target.tagName==='TEXTAREA';
+  if(modalBg.classList.contains('open')){
+    if(e.key==='Escape') modalBg.classList.remove('open');
+    if(e.key==='ArrowRight') navigate(-1);
+    if(e.key==='ArrowLeft') navigate(1);
+  }
+  if(!typing && e.key==='/'){ e.preventDefault(); document.getElementById('search').focus(); }
+  if(!typing && e.key==='?'){ shortcutsBg.classList.add('open'); }
+  if(e.key==='Escape'){ shortcutsBg.classList.remove('open'); cmpBg.classList.remove('open'); }
+});
+
+/* ---------- mobile swipe on modal ---------- */
+(function swipeSetup(){
+  const box = document.getElementById('modalBox');
+  let startX = null;
+  box.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; }, {passive:true});
+  box.addEventListener('touchend', e=>{
+    if(startX===null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 60){ navigate(dx<0 ? 1 : -1); }
+    startX = null;
+  }, {passive:true});
+})();
+
+/* ---------- deep link on load ---------- */
+(function checkHash(){
+  const h = location.hash.replace('#','');
+  if(h && byId[h]) setTimeout(()=>openModal(h), 300);
+})();
+
+/* ---------- full relationship network graph ---------- */
+function buildGraph(){
+  const clusters = {
+    god:{cx:450, cy:130, r:100},
+    trojan:{cx:190, cy:440, r:120},
+    greek:{cx:710, cy:440, r:120},
+    odyssey:{cx:450, cy:690, r:150}
+  };
+  const groups = {god:[], trojan:[], greek:[], odyssey:[]};
+  DATA.forEach(d=>groups[d.fac].push(d));
+  const pos = {};
+  Object.keys(groups).forEach(k=>{
+    const cl = clusters[k];
+    const n = groups[k].length;
+    groups[k].forEach((d,i)=>{
+      const angle = (2*Math.PI*i/n) - Math.PI/2;
+      pos[d.id] = { x: cl.cx + cl.r*Math.cos(angle), y: cl.cy + cl.r*Math.sin(angle), color: FAC[k].color };
+    });
+  });
+  const seen = new Set();
+  let lines = '';
+  DATA.forEach(d=>{
+    (d.rel||[]).forEach(r=>{
+      if(!pos[r.id]) return;
+      const key = [d.id, r.id].sort().join('|');
+      if(seen.has(key)) return;
+      seen.add(key);
+      const a = pos[d.id], b = pos[r.id];
+      lines += `<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${a.color}" stroke-width="1" opacity="0.22"/>`;
+    });
+  });
+  let nodes = '';
+  DATA.forEach(d=>{
+    const p = pos[d.id];
+    nodes += `<g class="graph-node" data-id="${d.id}">
+        <title>${d.name} — ${d.epithet}</title>
+        <circle cx="${p.x}" cy="${p.y}" r="17" fill="#12141f" stroke="${p.color}" stroke-width="2"/>
+        <text x="${p.x}" y="${p.y+5}" text-anchor="middle" font-size="14">${d.icon}</text>
+      </g>`;
+  });
+  const svg = `<svg viewBox="0 0 900 820" style="max-width:900px; margin:0 auto; display:block;">${lines}${nodes}</svg>`;
+  const wrap = document.getElementById('graphSvgWrap');
+  wrap.innerHTML = svg;
+  wrap.addEventListener('click', e=>{
+    const node = e.target.closest('.graph-node');
+    if(node) openModal(node.dataset.id);
+  });
+}
+
+/* ================= RENDER: TIMELINE ================= */
+(function renderTimeline(){
+  const el = document.getElementById('timelineView');
+  const engLabels = {iliad:'Part I · The Iliad', odyssey:'Part II · The Odyssey', epilogue:'Epilogue · Legacy'};
+  let html = `<div id="storyProgress"><i id="storyProgressBar"></i></div>
+    <div class="story-controls">
+      <div class="tb-btn" id="expandAll">🔽 باز کردن همهٔ فصل‌ها</div>
+      <div class="tb-btn" id="collapseAll">🔼 بستن همهٔ فصل‌ها</div>
+    </div>`;
+  Object.entries(STORY).forEach(([key, phase])=>{
+    html += `<div class="story-phase" style="--phase-color:${phase.color}">
+      <div class="phase-head">
+        <div class="num eng">${engLabels[key]||''}</div>
+        <h2>${phase.label}</h2>
+        <p>${phase.intro}</p>
+      </div>
+      <div class="timeline">
+        ${phase.chapters.map((c,i)=>`
+          <div class="chap" data-key="${key}-${i}">
+            <div class="chap-num">${toPersianDigits(String(i+1).padStart(2,'0'))}</div>
+            <div class="chap-card">
+              <div class="chap-head">
+                <h3>${c.t}</h3>
+                <span class="chevron">▾</span>
+              </div>
+              <div class="chap-detail"><div class="chap-detail-in">
+                ${c.x}
+                <div class="chap-chars">${c.c.map(id=>{
+                  const ch = byId[id];
+                  return ch ? `<div class="rel-chip" data-id="${id}"><span>${ch.icon}</span><span class="rname">${ch.name}</span></div>` : '';
+                }).join("")}</div>
+              </div></div>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  });
+  el.innerHTML = html;
+
+  el.addEventListener('click', e=>{
+    const chip = e.target.closest('.rel-chip');
+    if(chip){ openModal(chip.dataset.id); return; }
+    const expBtn = e.target.closest('#expandAll');
+    if(expBtn){ el.querySelectorAll('.chap').forEach(c=>c.classList.add('open')); return; }
+    const colBtn = e.target.closest('#collapseAll');
+    if(colBtn){ el.querySelectorAll('.chap').forEach(c=>c.classList.remove('open')); return; }
+    const head = e.target.closest('.chap-head');
+    if(head){
+      head.closest('.chap').classList.toggle('open');
+    }
+  });
+  // open first chapter of each phase by default
+  el.querySelectorAll('.timeline').forEach(t=> t.firstElementChild && t.firstElementChild.classList.add('open'));
+
+  // reading-progress bar for the timeline section
+  window.addEventListener('scroll', ()=>{
+    if(el.style.display === 'none') return;
+    const rect = el.getBoundingClientRect();
+    const total = rect.height - window.innerHeight;
+    const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total,1));
+    const pct = total>0 ? (scrolled/total)*100 : 0;
+    const bar = document.getElementById('storyProgressBar');
+    if(bar) bar.style.width = pct + '%';
+  });
+})();
+
+/* ---------- ambient stars & embers ---------- */
+(function ambient(){
+  const starsEl = document.getElementById('stars');
+  let frag = document.createDocumentFragment();
+  for(let i=0;i<90;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    const size = Math.random()*2+1;
+    s.style.width=s.style.height=size+"px";
+    s.style.left = Math.random()*100+"%";
+    s.style.top = Math.random()*70+"%";
+    s.style.animationDelay = (Math.random()*4)+"s";
+    frag.appendChild(s);
+  }
+  for(let i=0;i<16;i++){
+    const em = document.createElement('div');
+    em.className='ember';
+    const size = Math.random()*4+2;
+    em.style.width=em.style.height=size+"px";
+    em.style.left = Math.random()*100+"%";
+    em.style.setProperty('--drift', (Math.random()*80-40)+"px");
+    em.style.animationDuration = (Math.random()*10+10)+"s";
+    em.style.animationDelay = (Math.random()*10)+"s";
+    frag.appendChild(em);
+  }
+  starsEl.appendChild(frag);
+})();
+</script>
+</body>
+</html>
